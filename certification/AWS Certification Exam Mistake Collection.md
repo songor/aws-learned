@@ -174,4 +174,88 @@
 
   *Explanation:* [Improving Data Access with Secondary Indexes](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/SecondaryIndexes.html). A *secondary index* is a data structure that contains a subset of attributes from a table, along with an alternate key to support `Query` operations.
 
+* Security, security mechanisms
+
+  An organization is setting up their website on AWS. The organization is working on various security measures to be performed on the AWS EC2 instances. Which of the below mentioned security mechanisms will not help the organization to avoid future data leaks and identify security weaknesses?
+
+  A. Perform SQL injection for application testing
+
+  B. Run penetration testing on AWS with prior approval from Amazon
+
+  C. Perform a hardening test on the AWS instance
+
+  **D. Perform a Code Check for any memory leaks**
+
+* SQS, delete queue without notification
+
+  Regarding Amazon SQS, what happens if there is no activity against a queue for more than 30 consecutive days?
+
+  A. Your account will be suspended
+
+  B. The queue may be deleted
+
+  C. Nothing
+
+  **D. The queue will be deleted**
+
+  *Explanation:* [Amazon Simple Queue Service Developer Guide](https://s3.cn-north-1.amazonaws.com.cn/aws-dam-prod/china/pdf/sqs-dg.pdf). Amazon SQS can delete your queue without notification if one of the following actions hasn't been performed on it for 30 consecutive days: SendMessage, ReceiveMessage, DeleteMessage, GetQueueAttributes, SetQueueAttributes, AddPermission, and RemovePermission.
+
+* AMI, share
+
+  Which of the below mentioned commands allows the user to share the AMI with his peers using the AWS EC2 CLI?
+
+  A. ec2-share-image-public
+
+  B. ec2-share-image-account
+
+  C. ec2-share-image
+
+  **D. ec2-modify-image-attribute**
+
+  *Explanation:* [Sharing an AMI with Specific AWS Accounts](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/sharingamis-explicit.html). You can share an AMI with specific AWS accounts without making the AMI public. All you need is the AWS account IDs.
+
+* EBS, snapshot
+
+  A user has created a new EBS volume from an existing snapshot. The user mounts the volume on the instance to which it is attached. Which of the below mentioned options is a required step before the user can mount the volume?
+
+  A. Run a cyclic check on the device for data consistency
+
+  B. Create the file system of the volume
+
+  C. Resize the volume as per the original snapshot size
+
+  **D. No step is required. The user can directly mount the device**
+
+  *Explanation:* [Amazon EBS Snapshots](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSSnapshots.html). When you create an EBS volume based on a snapshot, the new volume begins as an exact replica of the original volume that was used to create the snapshot. The replicated volume loads data in the background so that you can begin using it immediately.
+
+  [Making an Amazon EBS Volume Available for Use on Linux](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-using-volumes.html). After you attach an Amazon EBS volume to your instance, it is exposed as a block device. You can format the volume with any file system and then mount it.
+
+* ELB, custom domain name
+
+  Can a user associate and use his own DNS with ELB instead of the DNS provided by AWS ELB?
+
+  **A. Yes, by creating a CNAME with the existing domain name provider**
+
+  B. Yes, by configuring DNS in the AWS Console
+
+  C. No
+
+  D. Yes, only through Route 53 by mapping ELB and DNS
+
+  *Explanation:* [Configure a Custom Domain Name for Your Classic Load Balancer](https://docs.aws.amazon.com/elasticloadbalancing/latest/classic/using-domain-names-with-elb.html)
+
+* SWF, worker
+
+  In relation to Amazon Simple Workflow Service(Amazon SWF), what is an "Activity Worker"?
+
+  A. An individual task undertaken by a workflow
+
+  B. The automation of a business process
+
+  **C. A piece of software that implements tasks**
+
+  D. All answers listed are correct
+
+  *Explanation:* [Introduction to Amazon SWF](https://docs.aws.amazon.com/amazonswf/latest/developerguide/swf-dg-intro-to-swf.html). An *activity worker* is a program that receives activity tasks, performs them, and provides results back.
+
 * 
