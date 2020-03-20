@@ -12,6 +12,8 @@
 
   D. Blank
 
+  *Explanation:* [Adding Objects to Versioning-Suspended Buckets](https://docs.aws.amazon.com/AmazonS3/latest/dev/AddingObjectstoVersionSuspendedBuckets.html). Once you suspend versioning on a bucket, Amazon S3 automatically adds a `null` version ID to every subsequent object stored thereafter (using `PUT`, `POST`, or `COPY`) in that bucket.
+
 * SQS, delete queue
 
   A user has created a queue named "myqueue" with SQS. There are four messages published to queue which are not received by the consumer yet. If the user tries to delete the queue, what will happen?
@@ -24,6 +26,8 @@
 
   **D. It will delete the queue**
 
+  *Explanation:* [DeleteQueue](https://docs.aws.amazon.com/AWSSimpleQueueService/latest/APIReference/API_DeleteQueue.html). Be careful with the `DeleteQueue` action: When you delete a queue, any messages in the queue are no longer available.
+
 * EC2, secondary IP address
 
   An organization has launched two applications: one for blogging and one for ECM on the same AWS Linux EC2 instance running in the AWS VPC. The organization has attached two private IPs (primary and secondary) to the above mentioned instance. The organization wants the instance OS to recognize the secondary IP address. How can the organization configure this?
@@ -35,6 +39,8 @@
   C. Use the ec2-ip-update package which can configure the network interface as well as update the secondary IP with DHCP
 
   D. Use the ec2-ip-utility package which can update the routing tables as well as refresh the secondary IP using DHCP
+
+  *Explanation:* [Multiple IP Addresses](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/MultipleIP.html). After you assign a secondary private IPv4 address to your instance, you need to configure the operating system on your instance to recognize the secondary private IP address. If you are using Amazon Linux, the ec2-net-utils package can take care of this step for you. It configures additional network interfaces that you attach while the instance is running, refreshes secondary IPv4 addresses during DHCP lease renewal, and updates the related routing rules.
 
 * SQS, messages kept default
 
@@ -60,7 +66,7 @@
 
   D. It is not possible to provide access based on the region
 
-  Explanation: [Easier way to control access to AWS regions using IAM policies](https://aws.amazon.com/cn/blogs/security/easier-way-to-control-access-to-aws-regions-using-iam-policies/)
+  *Explanation:* [Easier way to control access to AWS regions using IAM policies](https://aws.amazon.com/cn/blogs/security/easier-way-to-control-access-to-aws-regions-using-iam-policies/)
 
 * SQS, messages kept maximum
 
@@ -98,7 +104,7 @@
 
   D. Create an IAM role which has access to RDS and launch an instance in the US West region with it
 
-  Explanation: The user can authorize an IP range or specify an Amazon EC2 security group in the same region that refers to an IP address in another region.
+  *Explanation:* [Working with DB Security Groups (EC2-Classic Platform)](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_WorkingWithSecurityGroups.html). You can't authorize an EC2-Classic security group that is in a different AWS Region than your DB instance. You can authorize an IP range, or specify an EC2-Classic security group in the same AWS Region that refers to IP address in another AWS Region.
 
 * CloudFormation, stack
 
@@ -124,7 +130,7 @@
 
   D. Consist of a folder with all files
 
-  Explanation: https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/applications-sourcebundle.html
+  *Explanation:* [Create an application source bundle](https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/applications-sourcebundle.html). Consist of a single `ZIP` file or `WAR` file (you can include multiple `WAR` files inside your `ZIP` file)
 
 * S3, static website
 
@@ -138,6 +144,8 @@
 
   **D. It will provide the region specific website endpoint**
 
+  *Explanation:* [Hosting a Static Website on Amazon S3](https://docs.aws.amazon.com/AmazonS3/latest/dev/WebsiteHosting.html). After you configure your bucket as a static website, you can access the bucket through the AWS Region-specific Amazon S3 website endpoints for your bucket.
+
 * SQS, visibility timeout
 
   How does Amazon SQS allow multiple readers to access the same message queue without losing messages or processing them many times?
@@ -150,6 +158,8 @@
 
   D. Multiple readers can't access the same message queue
 
+  *Explanation:* [Amazon SQS Visibility Timeout](https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-visibility-timeout.html). To prevent other consumers from processing the message again, Amazon SQS sets a *visibility timeout*, a period of time during which Amazon SQS prevents other consumers from receiving and processing the message. The default visibility timeout for a message is 30 seconds. The minimum is 0 seconds. The maximum is 12 hours.
+
 * DynamoDB, secondary index
 
   In DynamoDB, a secondary index is a data structure that contains a subset of attributes from a table, along with an alternate key to support ________ operations.
@@ -161,5 +171,7 @@
   **C. Query**
 
   D. Scan
+
+  *Explanation:* [Improving Data Access with Secondary Indexes](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/SecondaryIndexes.html). A *secondary index* is a data structure that contains a subset of attributes from a table, along with an alternate key to support `Query` operations.
 
 * 
