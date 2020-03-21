@@ -406,4 +406,167 @@
 
   ***Explanation:*** [Tagging Your Amazon EC2 Resources](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Using_Tags.html). Maximum number of tags per resource – 50
 
+* S3, version
+
+  A user is trying to find the state of an S3 bucket with respect to versioning. Which of the below mentioned states AWS will not return when queried?
+
+  A. versioning-enabled
+
+  B. versioning-suspended
+
+  C. unversioned
+
+  **D. versioned**
+
+  ***Explanation:*** [Using Versioning](https://docs.aws.amazon.com/AmazonS3/latest/dev/Versioning.html). Buckets can be in one of three states: unversioned (the default), versioning-enabled, or versioning-suspended.
+
+* DynamoDB, atomic counters
+
+  Does Amazon DynamoDB support both increment and decrement atomic operations?
+
+  A. No, neither increment nor decrement operations
+
+  B. Only increment, since decrement are inherently impossible with DynamoDB's data model
+
+  C. Only decrement, since increment are inherently impossible with DynamoDB's data model
+
+  **D. Yes, both increment and decrement operations**
+
+  ***Explanation:*** [Atomic Counters](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/WorkingWithItems.html#WorkingWithItems.AtomicCounters). You can use the `UpdateItem` operation to implement an *atomic counter*—a numeric attribute that is incremented, unconditionally, without interfering with other write requests.
+
+* S3, IAM
+
+  A user is trying to configure access with S3. Which of the following options is not possible to provide access to the S3 bucket / object?
+
+  A. Define the policy for the IAM user
+
+  B. Define the ACL for the object
+
+  **C. Define the policy for the object**
+
+  D. Define the policy for the bucket
+
+  ***Explanation:*** [Identity and Access Management in Amazon S3](https://docs.aws.amazon.com/AmazonS3/latest/dev/s3-access-control.html). [Guidelines for Using the Available Access Policy Options](https://docs.aws.amazon.com/AmazonS3/latest/dev/access-policy-alternatives-guidelines.html)
+
+* ELB, listeners
+
+  A user is configuring the HTTPS protocol on a front end ELB and the SSL protocol for the back-end listener in ELB. What will ELB do?
+
+  A. It will allow you to create the configuration, but the instance will not pass the health check
+
+  B. Receives requests on HTTPS and sends it to the back end instance on SSL
+
+  **C. It will not allow you to create this configuration**
+
+  D. It will allow you to create the configuration, but ELB will not work as expected
+
+  ***Explanation:*** [Listeners for Your Classic Load Balancer](https://docs.aws.amazon.com/elasticloadbalancing/latest/classic/elb-listener-config.html). If the front-end connection uses TCP or SSL, then your back-end connections can use either TCP or SSL. If the front-end connection uses HTTP or HTTPS, then your back-end connections can use either HTTP or HTTPS.
+
+* RDS, MS SQL
+
+  A user is planning to host MS SQL on an EBS volume. It was recommended to use the AWS RDS. What advantages will the user have if he uses RDS in comparison to an EBS based DB?
+
+  A. Better throughput with PIOPS
+
+  B. Automated backup
+
+  C. MS SQL is not supported with RDS
+
+  **D. High availability with multi AZs**
+
+  ***Explanation:*** [Multi-AZ Deployments for Microsoft SQL Server](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_SQLServerMultiAZ.html)
+
+* ELB, register EC2 instances
+
+  A user is setting up an Elastic Load Balancer(ELB). Which of the below parameters should the user consider so as the instance gets registered with the ELB?
+
+  A. ELB DNS
+
+  **B. IP address**
+
+  C. Security group
+
+  D. ELB IP
+
+  ***Explanation:*** [Register or Deregister EC2 Instances for Your Classic Load Balancer](https://docs.aws.amazon.com/elasticloadbalancing/latest/classic/elb-deregister-register-instances.html). Elastic Load Balancing registers your EC2 instance with your load balancer using its IP address.
+
+* [Step and Simple Scaling Policies for Amazon EC2 Auto Scaling](https://docs.aws.amazon.com/autoscaling/ec2/userguide/as-scaling-simple-step.html). You can specify the adjustment type as a percentage of the current capacity of your Auto Scaling group, or in capacity units.
+
+* [DB Instance Billing for Amazon RDS](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/User_DBInstanceBilling.html)
+
+* [DynamoDB Secondary Indexes](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/HowItWorks.CoreComponents.html#HowItWorks.CoreComponents.SecondaryIndexes)
+
+* EC2, launch
+
+  When a user is launching an instance with EC2, which of the below mentioned options is not available during the instance launch console for a key pair?
+
+  A. Proceed without the key pair
+
+  **B. Upload a new key pair**
+
+  C. Select an existing key pair
+
+  D. Create a new key pair
+
+  ***Explanation:*** [Launching an instance using the Launch Instance Wizard](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/launching-instance.html#step-7-review-instance-launch)
+
+* EBS, volume
+
+  A user is creating an EBS volume. He asks for your advice. Which advice mentioned below should you not give to the user for creating an EBS volume?
+
+  A. Take the snapshot of the volume when the instance is stopped
+
+  B. Stripe multiple volumes attached to the same instance
+
+  **C. Create an AMI from the attached volume**
+
+  D. Attach multiple volumes to the same instance
+
+  ***Explanation:*** [Amazon EBS Volumes](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-volumes.html). If you attach multiple volumes to a device that you have named, you can stripe data across the volumes for increased I/O and throughput performance.
+
+  [Creating an Amazon EBS-Backed Linux AMI](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/creating-an-ami-ebs.html). If you have a snapshot of the root device volume of an instance, you can create an AMI from this snapshot using the AWS Management Console or the command line.
+
+* DynamoDB, console
+
+  The AWS console for DynamoDB enables you to do all the following operations, except:
+
+  A. Set up alarms to monitor your table's capacity usage
+
+  B. Create, update, and delete tables
+
+  **C. Import Data from other databases or from files**
+
+  D. View your table's top monitoring metrics on real-time graphs from CloudWatch
+
+  ***Explanation:*** [Import and Export DynamoDB Data Using AWS Data Pipeline](https://docs.aws.amazon.com/datapipeline/latest/DeveloperGuide/dp-importexport-ddb.html). [Using the Console](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/ConsoleDynamoDB.html)
+
+* ELB, cookie
+
+  A user has hosted a website on AWS and uses ELB to load balance the multiple instances. The user application does not have any cookie management. How can the user bind the session of the requestor with a particular instance?
+
+  A. Bind the IP address with a sticky cookie
+
+  B. Create a cookie at the application level to set at ELB
+
+  C. Use session synchronization with ELB
+
+  **D. Let ELB generate a cookie for a specified duration**
+
+  ***Explanation:*** [Configure Sticky Sessions for Your Classic Load Balancer](https://docs.aws.amazon.com/elasticloadbalancing/latest/classic/elb-sticky-sessions.html). The key to managing sticky sessions is to determine how long your load balancer should consistently route the user's request to the same instance. If your application has its own session cookie, then you can configure Elastic Load Balancing so that the session cookie follows the duration specified by the application's session cookie. If your application does not have its own session cookie, then you can configure Elastic Load Balancing to create a session cookie by specifying your own stickiness duration.
+
+* RDS, automated backup
+
+  A user has enabled automated backup for an RDS instance. What is the longest duration for which the user can retain the automated backup?
+
+  A. 25 days
+
+  B. 15 days
+
+  C. 45 days
+
+  **D. 35 days**
+
+  ***Explanation:*** [Working With Backups](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_WorkingWithAutomatedBackups.html). You can set the backup retention period to between 0 and 35 days.
+
 * 
+
