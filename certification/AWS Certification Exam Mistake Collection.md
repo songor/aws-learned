@@ -568,5 +568,177 @@
 
   ***Explanation:*** [Working With Backups](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_WorkingWithAutomatedBackups.html). You can set the backup retention period to between 0 and 35 days.
 
+* S3 Glacier, data model
+
+  A user is uploading archives to Glacier. The user is trying to understand key Glacier resources. Which of the below mentioned options is not a Glacier resource?
+
+  A. Notification configuration
+
+  **B. Archive ID**
+
+  C. Job
+
+  D. Archive
+
+  ***Explanation:*** [Amazon S3 Glacier Data Model](https://docs.aws.amazon.com/amazonglacier/latest/dev/amazon-glacier-data-model.html). The Amazon S3 Glacier (S3 Glacier) data model core concepts include vaults and archives. In addition, the S3 Glacier data model includes job and notification-configuration resources.
+
+* SWF, markers
+
+  Regarding Amazon SWF, at times you might want to record information in the workflow history of a workflow execution that is specific to your use case. _________ enable you to record information in the workflow execution history that you can use for any custom or scenario-specific purpose.
+
+  A. Markers
+
+  B. Tags
+
+  C. Hash keys
+
+  D. Events
+
+  ***Explanation:*** [Markers](https://docs.aws.amazon.com/amazonswf/latest/developerguide/swf-dev-adv-markers.html)
+
+* IAM, security credentials
+
+  An organization has created 10 IAM users. The organization wants those users to work independently and access AWS. Which of the below mentioned options is not a possible solution?
+
+  **A. Create the access key and secret access key for each user and provide access to AWS using the console**
+
+  B. Create the X.509 certificate for each user and provide them access to AWS CLI
+
+  C. Enable MFA for each IAM user and assign them the virtual MFA device to access the console
+
+  D. Provide each user with the IAM login and password for the AWS console
+
+  ***Explanation:*** [Understanding and Getting Your Security Credentials](https://docs.aws.amazon.com/general/latest/gr/aws-sec-cred-types.html)
+
+* SQS, maximum size
+
+  What is the maximum size for messages stored in SQS?
+
+  **A. 256KB**
+
+  B. 128KB
+
+  C. 1024KB
+
+  D. 64KB
+
+  ***Explanation:*** [How do I configure the maximum message size for Amazon SQS](https://aws.amazon.com/sqs/faqs/)
+
+* [Permitting IAM Users to Change Their Own Passwords](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_passwords_enable-user-change.html)
+
+* CloudFormation, maximum number of stacks
+
+  When working with AWS CloudFormation Templates what is the maximum number of stacks that you can create?
+
+  A. 500
+
+  B. 50
+
+  C. 20
+
+  D. 10
+
+  ***Explanation:*** [AWS CloudFormation Limits](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/cloudformation-limits.html). 200 stacks.
+
+* EBS, IOPS
+
+  A user has created an EBS volume with 1000 IOPS. What is the average IOPS that the user will get for most of the year as per EC2 SLA if the instance is attached to the EBS optimized instance?
+
+  **A. 900**
+
+  B. 990
+
+  C. 950
+
+  D. 1000
+
+  ***Explanation:*** [What level of performance consistency can I expect to see from my Provisioned IOPS SSD (io1) volumes?](https://aws.amazon.com/ebs/faqs/). When attached to EBS-optimized instances, Provisioned IOPS SSD (io1) volumes are designed to deliver within 10% of the provisioned IOPS performance 99.9% of the time in a given year.
+
+* DynamoDB
+
+  Which statements about DynamoDB are true? Choose 2 answers
+
+  A. DynamoDB uses a pessimistic locking model
+
+  **B. DynamoDB uses optimistic concurrency control**
+
+  **C. DynamoDB uses conditional writes for consistency**
+
+  D. DynamoDB restricts item access during reads
+
+  E. DynamoDB restricts item access during writes
+
+  ***Explanation:*** [Conditional Writes](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/WorkingWithItems.html#WorkingWithItems.ConditionalUpdate). Conditional writes are helpful in cases where multiple users attempt to modify the same item.
+
+  [Optimistic Locking with Version Number](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/DynamoDBMapper.OptimisticLocking.html). *Optimistic locking* is a strategy to ensure that the client-side item that you are updating (or deleting) is the same as the item in Amazon DynamoDB.
+
+* EBS, secure data
+
+  How can you secure data at rest on an EBS volume?
+
+  A. Attach the volume to an instance using EC2's SSL interface
+
+  B. Write the data randomly instead of sequentially
+
+  **C. Use an encrypted file system on top of the EBS volume**
+
+  D. Encrypt the volume using the S3 server-side encryption service.
+
+  E. Create an IAM policy that restricts read and write access to the volume
+
+  ***Explanation:*** [How to Protect Data at Rest with Amazon EC2 Instance Store Encryption](https://aws.amazon.com/blogs/security/how-to-protect-data-at-rest-with-amazon-ec2-instance-store-encryption/)
+
+* SWF
+
+  Which of the following statements about SWF are true? Choose 3 answers
+
+  **A. SWF tasks are assigned once and never duplicated**
+
+  B. SWF requires an S3 bucket for workflow storage
+
+  **C. SWF workflow executions can last up to a year**
+
+  D. SWF triggers SNS notifications on task assignment
+
+  **E. SWF uses deciders and workers to complete tasks**
+
+  F. SWF requires at least 1 EC2 instance per domain
+
+  ***Explanation:*** [Amazon SWF Limits](https://docs.aws.amazon.com/amazonswf/latest/developerguide/swf-dg-limits.html). Maximum workflow execution time – 1 year
+
+  [Amazon SWF Tasks](https://docs.aws.amazon.com/amazonswf/latest/developerguide/swf-dev-tasks.html). Amazon SWF assigns each activity task to exactly one activity worker. Once the task is assigned, no other activity worker can claim or perform that task.
+
+  [What are workers and deciders?](https://aws.amazon.com/swf/faqs/). Workers are programs that interact with Amazon SWF to get tasks, process received tasks, and return the results. The decider is a program that controls the coordination of tasks.
+
+* [Common Pitfalls When Testing Elastic Load Balancing](https://aws.amazon.com/articles/best-practices-in-evaluating-elastic-load-balancing/)
+
+  DNS Resolution - If clients do not re-resolve the DNS at least once per minute, then the new resources Elastic Load Balancing adds to DNS will not be used by clients. This can mean that clients continue to overwhelm a small portion of the allocated Elastic Load Balancing resources, while overall Elastic Load Balancing is not being heavily utilized. This is not a problem that can occur in real-world scenarios, but it is a likely problem for load testing tools that do not offer the control needed to ensure that clients are re-resolving DNS frequently.
+
+  Sticky Sessions and Unique Clients - If sticky sessions are enabled, it is critical that the load test framework not re-use connections and clients in the tests, but rather it creates unique clients for each request. If this is not done, then the clients will constantly send traffic to the same Elastic Load Balancing resources and the same back-end instances, overwhelming what is potentially a very small amount of the available capacity.
+
+* SNS, device tokens
+
+  You are providing AWS consulting services for a company developing a new mobile application that will be leveraging Amazon SNS Mobile Push for push notifications. In order to send direct notification messages to individual devices each device registration identifier or token needs to be registered with SNS; however the developers are not sure of the best way to do this. You advise them to:
+
+  A. Bulk upload the device tokens contained in a CSV file via the AWS Management Console
+
+  B. Let the push notification service(e.g. Amazon Device Messaging) handle the registration
+
+  C. Implement a token vending service to handle the registration
+
+  **D. Call the CreatePlatformEndPoint API function to register multiple device tokens**
+
+  ***Explanation:*** [Add Device Tokens or Registration IDs](https://docs.aws.amazon.com/sns/latest/dg/mobile-push-send-devicetoken.html)
+
+  You can add device tokens and registration IDs to Amazon SNS using the following methods:
+
+  Manually add a single token to AWS using the AWS Management Console
+
+  Migrate existing tokens from a CSV file to AWS using the AWS Management Console
+
+  Upload several tokens using the `CreatePlatformEndpoint` API
+
+  Register tokens from devices that will install your apps in the future
+
 * 
 
