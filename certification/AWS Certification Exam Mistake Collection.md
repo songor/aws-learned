@@ -740,5 +740,189 @@
 
   Register tokens from devices that will install your apps in the future
 
+* SQS, SetQueueAttributes
+
+  [SetQueueAttributes](https://docs.aws.amazon.com/AWSSimpleQueueService/latest/APIReference/API_SetQueueAttributes.html)
+
+  | Request Parameters            | Valid values                                                 |
+  | :---------------------------- | :----------------------------------------------------------- |
+  | DelaySeconds                  | An integer from 0 to 900 (15 minutes). Default: 0.           |
+  | MaximumMessageSize            | An integer from 1,024 bytes (1 KiB) up to 262,144 bytes (256 KiB). Default: 262,144 (256 KiB). |
+  | MessageRetentionPeriod        | An integer representing seconds, from 60 (1 minute) to 1,209,600 (14 days). Default: 345,600 (4 days). |
+  | ReceiveMessageWaitTimeSeconds | An integer from 0 to 20 (seconds). Default: 0.               |
+  | VisibilityTimeout             | An integer from 0 to 43,200 (12 hours). Default: 30.         |
+
+  [Amazon SQS Short and Long Polling](https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-short-and-long-polling.html)
+
+  Long polling offers the following benefits:
+
+  Eliminate empty responses by allowing Amazon SQS to wait until a message is available in a queue before sending a response.
+
+  Eliminate false empty responses by querying all—rather than a subset of—Amazon SQS servers.
+
+  Return messages as soon as they become available.
+
+* S3, bucket limit
+
+  What is the maximum number of S3 Buckets available per AWS account?
+
+  A. 100 per region
+
+  B. there is no limit
+
+  C. 100 per account
+
+  D. 500 per account
+
+  E. 100 per IAM user
+
+  ***Explanation:*** [Bucket Restrictions and Limitations](https://docs.aws.amazon.com/AmazonS3/latest/dev/BucketRestrictions.html). By default, you can create up to 100 buckets in each of your AWS accounts. If you need additional buckets, you can increase your account bucket limit to a maximum of 1,000 buckets by submitting a service limit increase.
+
+* [Using Elastic Beanstalk with other AWS services](https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/AWSHowTo.html)
+
+* [What is the format of structured notification messages sent by Amazon SNS?](https://aws.amazon.com/sns/faqs/)
+
+* DynamoDB, scan
+
+  When using a large Scan operation in DynamoDB, what technique can be used to minimize the impact of a scan on a table's provisioned throughput?
+
+  **A. Set a smaller page size for the scan**
+
+  B. Use parallel scans
+
+  C. Define a range index on the table
+
+  D. Prewarm the table by updating all items
+
+  ***Explanation:*** [Best Practices for Querying and Scanning Data](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/bp-query-scan.html). Instead of using a large `Scan` operation, you can use the following techniques to minimize the impact of a scan on a table's provisioned throughput.
+
+  Reduce page size. Because a Scan operation reads an entire page (by default, 1 MB), you can reduce the impact of the scan operation by setting a smaller page size.
+
+  Isolate scan operations.
+
+* DynamoDB, partition key
+
+  You are writing to a DynamoDB table and receive the following exception: " ProvisionedThroughputExceededException". Though according to your CloudWatch metrics for the table, you are not exceeding your provisioned throughput. What could be an explanation for this?
+
+  A. You haven't provisioned enough DynamoDB storage instances
+
+  B. You're exceeding your capacity on a particular Range Key
+
+  **C. You're exceeding your capacity on a particular Hash Key**
+
+  D. You're exceeding your capacity on a particular Sort Key
+
+  E. You haven't configured DynamoDB Auto Scaling triggers
+
+  ***Explanation:*** [Choosing the Right DynamoDB Partition Key](https://aws.amazon.com/blogs/database/choosing-the-right-dynamodb-partition-key/). DynamoDB evenly distributes [provisioned throughput](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/HowItWorks.ProvisionedThroughput.html)—read capacity units (RCUs) and write capacity units (WCUs)—among partitions and automatically supports your access patterns using the throughput you have provisioned. However, if your access pattern  exceeds 3000 RCU or 1000 WCU [for a single partition key value](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/bp-partition-key-design.html), your requests might be throttled with a `ProvisionedThroughputExceededException` error.
+
+* S3, naming schema
+
+  If an application is storing hourly log files from thousands of instances from a high traffic web site, which naming scheme would give optimal performance on S3?
+
+  A. Sequential
+
+  B. instanceID_log-HH-DD-MM-YYYY
+
+  C. instanceID_log-YYYY-MM-DD-HH
+
+  **D. HH-DD-MM-YYYY-log_instanceID**
+
+  E. YYYY-MM-DD-HH-log_instanceID
+
+  ***Explanation:*** [Best Practices Design Patterns: Optimizing Amazon S3 Performance](https://docs.aws.amazon.com/AmazonS3/latest/dev/optimizing-performance.html). For example, previously Amazon S3 performance guidelines recommended randomizing prefix naming with hashed characters to optimize performance for frequent data retrievals. You no longer have to randomize prefix naming for performance, and can use sequential date-based naming for your prefixes.
+
+* [Share an Object with Others](https://docs.aws.amazon.com/AmazonS3/latest/dev/ShareObjectPreSignedURL.html). All objects by default are private. Only the object owner has permission to access these objects. However, the object owner can optionally share objects with others by creating a presigned URL, using their own security credentials, to grant time-limited permission to download the objects.
+
+* VPC, NAT
+
+  After launching an instance that you intend to serve as a NAT (Network Address Translation) device in a public subnet you modify your route tables to have the NAT device be the target of internet bound traffic of your private subnet. When you try and make an outbound connection to the Internet from an instance in the private subnet, you are not successful. Which of the following steps could resolve the issue?
+
+  A. Attaching a second Elastic Network interface (ENI) to the NAT instance, and placing it in the private subnet
+
+  B. Attaching a second Elastic Network Interface (ENI) to the instance in the private subnet, and placing it in the public subnet
+
+  **C. Disabling the Source/Destination Check attribute on the NAT instance**
+
+  D. Attaching an Elastic IP address to the instance in the private subnet
+
+  ***Explanation:*** [NAT Instances](https://docs.aws.amazon.com/vpc/latest/userguide/VPC_NAT_Instance.html). Each EC2 instance performs source/destination checks by default. This means that the instance must be the source or destination of any traffic it sends or receives. However, a NAT instance must be able to send and receive traffic when the source or destination is not itself. Therefore, you must disable source/destination checks on the NAT instance.
+
+* DynamoDB, pricing
+
+  In DynamoDB, if you create a table and request 10 units of write capacity and 200 units of read capacity of provisioned throughput, how much would you be charged in US East (Northern Virginia) Region?
+
+  A. $0.05 per hour
+
+  B. $0.10 per hour
+
+  **C. $0.03 per hour**
+
+  D. $0.15 per hour
+
+  ***Explanation:*** [Pricing for Provisioned Capacity](https://aws.amazon.com/dynamodb/pricing/provisioned/). 0.00065 * 10 + 0.00013 * 200 = 0.0325
+
+  For example, a strongly consistent read of an 8 KB item would require two RCUs, an eventually consistent read of an 8 KB item would require one RCU, and a transactional read of an 8 KB item would require four RCUs.
+
+  For example, a standard write request of a 1 KB item would require one WCU, a standard write request of a 3 KB item would require three WCUs, and a transactional write request of a 3 KB item would require six WCUs.
+
+* EC2, security
+
+  Which of the below mentioned pointers will not help the organization achieve better security arrangement?
+
+  A. Apply the latest patch of OS and always keep it updated
+
+  **B. Allow only IAM users to connect with the EC2 instances with their own secret access key**
+
+  C. Disable the password based login for all the users. All the users should use their own keys to connect with the instance securely
+
+  D. Create a procedure to revoke the access rights of the individual user when they are not required to connect to EC2 instance anymore for the purpose of application configuration
+
+  ***Explanation:*** [Tips for Securing Your EC2 Instance](https://aws.amazon.com/articles/tips-for-securing-your-ec2-instance/)
+
+* DynamoDB, operation
+
+  Which one of the following operations is NOT a DynamoDB operation?
+
+  A. BatchWriteItem
+
+  B. DescribeTable
+
+  C. BatchGetItem
+
+  **D. BatchDeleteItem**
+
+  ***Explanation:*** [DynamoDB API](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/HowItWorks.API.html)
+
+* Elastic Beanstalk
+
+  Which of the following platforms are supported by Elastic Beanstalk? Choose 2 answers
+
+  **A. Apache Tomcat**
+
+  **B. .NET**
+
+  C. IBM Websphere
+
+  D. Oracle JBoss
+
+  E. Jetty
+
+  ***Explanation:*** [Elastic Beanstalk supported platforms](https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/concepts.platforms.html)
+
+* EC2, AMIs
+
+  Which EC2 API call would you use to retrieve a list of Amazon Machine Images (AMIs)?
+
+  A. DescnbeInstances
+
+  **B. DescribeAMls**
+
+  C. DescribeImages
+
+  D. GetAMls
+
+  E. You cannot retrieve a list of AMIs as there are over 10,000 AMIs
+
 * 
 
