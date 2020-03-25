@@ -924,5 +924,193 @@
 
   E. You cannot retrieve a list of AMIs as there are over 10,000 AMIs
 
+* EC2, monitoring
+
+  In Amazon EC2, which of the following is the type of monitoring data for Amazon EBS volumes that is available automatically in 5-minute periods at no charge?
+
+  A. Primary
+
+  **B. Basic**
+
+  C. Initial
+
+  D. Detailed
+
+  ***Explanation:*** [Enable or Disable Detailed Monitoring for Your Instances](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-cloudwatch-new.html)
+
+* EC2, terminate
+
+  A user has launched an EC2 instance. However, due to some reason the instance was terminated. If the user wants to find out the reason for termination, where can he find the details?
+
+  **A. The user can get information from the AWS console, by checking the Instance description under the State transition reason label**
+
+  B. The user can get information from the AWS console, by checking the Instance description under the Instance Termination reason label
+
+  C. The user can get information from the AWS console, by checking the Instance description under the Instance Status Change reason label
+
+  D. It is not possible to find the details after the instance is terminated
+
+  ***Explanation:*** [Instance Terminates Immediately](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/troubleshooting-launch.html#troubleshooting-launch-internal)
+
+* RDS, PIOPS
+
+  A user has created a MySQL RDS instance with PIOPS. Which of the below mentioned statements will help user understand the advantage of PIOPS?
+
+  A. The user can achieve additional dedicated capacity for the EBS I/O with an enhanced RDS option
+
+  **B. It uses optimized EBS volumes and optimized configuration stacks**
+
+  C. It provides a dedicated network bandwidth between EBS and RDS
+
+  D. It uses a standard EBS volume with optimized configuration the stacks
+
+  ***Explanation:*** [Amazon RDS DB Instance Storage](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_Storage.html). DB instances for Amazon RDS for MySQL, MariaDB, PostgreSQL, Oracle, and Microsoft SQL Server use Amazon Elastic Block Store (Amazon EBS) volumes for database and log storage. Depending on the amount of storage requested, Amazon RDS automatically stripes across multiple Amazon EBS volumes to enhance performance.
+
+  Provisioned IOPS storage is a storage type that delivers predictable performance, and consistently low latency.
+
+  [Amazon EBS–Optimized Instances](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-optimized.html). An Amazon EBS–optimized instance uses an optimized configuration stack and provides additional, dedicated capacity for Amazon EBS I/O.
+
+* IAM, role
+
+  Which of the following items are required to allow an application deployed on an EC2 instance to write data to a DynamoDB table? Assume that no security keys are allowed to be stored on the EC2 instance. Choose 2 answers.
+
+  A. Create an IAM User that allows write access to the DynamoDB table
+
+  **B. Add an IAM Role to a running EC2 instance**
+
+  C. Add an IAM User to a running EC2 Instance
+
+  **D. Launch an EC2 Instance with the IAM Role included in the launch configuration**
+
+  **E. Create an IAM Role that allows write access to the DynamoDB table**
+
+  F. Launch an EC2 Instance with the IAM User included in the launch configuration
+
+  ***Explanation:*** [Attach an IAM role to your existing Amazon EC2 instance](https://aws.amazon.com/cn/about-aws/whats-new/2017/02/new-attach-an-iam-role-to-your-existing-amazon-ec2-instance/)
+
+* DynamoDB, limit
+
+  Is there a limit to how much throughput you can get out of a single table in DynamoDB?
+
+  A. Yes, not more than 1,000 writes/second or 1,000 reads/second
+
+  B. No
+
+  C. Yes, not more than 10,000 writes/second or 10,000 reads/second
+
+  **D. No, but If you wish to exceed throughput rates of 10,000 writes/second or 10,000 reads/second, you must first contact AWS**
+
+  ***Explanation:*** [Read/Write Capacity Mode and Throughput](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Limits.html#default-limits-throughput-capacity-modes). Per table - 40,000 read capacity units and 40,000 write capacity units, Per account - 80,000 read capacity units and 80,000 write capacity units.
+
+  You can increase `ReadCapacityUnits` or `WriteCapacityUnits` as often as necessary, using the AWS Management Console or the `UpdateTable` operation.
+
+* Microsoft SQL Server, Multi-AZ
+
+  A user has setup Multi AZ with the MS SQL RDS instance. Which of the below mentioned functionalities can be achieved by the user?
+
+  **A. High availability**
+
+  B. Scalability
+
+  C. MS SQL does not support Multi AZ
+
+  D. Disaster recovery
+
+  ***Explanation:*** [Multi-AZ Deployments for Microsoft SQL Server](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_SQLServerMultiAZ.html)
+
+* [Tutorial: Create a Classic Load Balancer](https://docs.aws.amazon.com/elasticloadbalancing/latest/classic/elb-getting-started.html)
+
+* EC2, metadata
+
+  An organization is having an application which can start and stop an EC2 instance as per schedule. The organization needs the MAC address of the instance to be registered with its software. The instance is launched in EC2-CLASSIC. How can the organization update the MAC registration every time an instance is booted?
+
+  A. The instance MAC address never changes. Thus, it is not required to register the MAC address every time
+
+  **B. The organization should write a boot strapping script which will get the MAC address from the instance metadata and use that script to register with the application**
+
+  C. AWS never provides a MAC address to an instance; instead the instance ID is used for identifying the instance for any software registration
+
+  D. The organization should provide a MAC address as a part of the user data. Thus, whenever the instance is booted the script assigns the fixed MAC address to that instance
+
+  ***Explanation:*** [Instance Metadata Categories](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instancedata-data-categories.html). mac - The instance's media access control (MAC) address. In cases where multiple network interfaces are present, this refers to the eth0 device (the device for which the device number is 0).
+
+  [Running Commands on Your Linux Instance at Launch](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/user-data.html#user-data-shell-scripts). When you launch an instance in Amazon EC2, you have the option of passing user data to the instance that can be used to perform common automated configuration tasks and even run scripts after the instance starts.
+
+* RDS, storage
+
+  A user has launched an RDS instance. The user has created 3 databases on the same server. What can the maximum size be for each database?
+
+  A. The size of each DB cannot be more than 3 TB
+
+  B. It is not possible to have more than one DB on a single instance
+
+  **C. The total instance storage size cannot be more than 3 TB**
+
+  D. The size of each DB cannot be more than 1 TB
+
+  ***Explanation:*** [Amazon RDS DB Instance Storage](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_Storage.html). You can create MySQL, MariaDB, and PostgreSQL RDS DB instances with up to 64 TiB of storage. You can create Oracle RDS DB instances with up to 64 TiB of storage. You can create SQL Server RDS DB instances with up to 16 TiB of storage. 
+
+  Magnetic storage - Limited to a maximum size of 3 TiB.
+
+* IAM, Identity federation
+
+  An organization has 10000 employees. The organization wants to give restricted AWS access to each employee. How can the organization achieve this?
+
+  A. Create an IAM user for each employee and make them a part of the group
+
+  B. It is not recommended to support 10000 users with IAM
+
+  C. Use STS and create the users run time
+
+  **D. Use Identity federation with SSO**
+
+  ***Explanation:*** [IAM and STS Limits](https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_iam-limits.html). Users in an AWS account - 5000
+
+  [Temporary Security Credentials](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_temp.html). You can provide access to your AWS resources to users without having to define an AWS identity for them. Temporary credentials are the basis for roles and identity federation.
+
+  [Identity Providers and Federation](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_providers.html). If you already manage user identities outside of AWS, you can use IAM *identity providers* instead of creating IAM users in your AWS account. With an identity provider (IdP), you can manage your user identities outside of AWS and give these external user identities permissions to use AWS resources in your account.
+
+  [Creating IAM Identity Providers](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_providers_create.html). When you want to configure federation with an external identity provider (IdP) service, you create an IAM *identity provider* to inform AWS about the IdP and its configuration. This establishes "trust" between your AWS account and the IdP.
+
+  [About Web Identity Federation](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_providers_oidc.html).They can receive an authentication token, and then exchange that token for temporary security credentials in AWS that map to an IAM role with permissions to use the resources in your AWS account.
+
+  If you don't use Amazon Cognito, then you must write code that interacts with a web IdP, such as Facebook, and then calls the `AssumeRoleWithWebIdentity` API to trade the authentication token you get from those IdPs for AWS temporary security credentials.
+
+  [About SAML 2.0-based Federation](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_providers_saml.html). This feature enables federated single sign-on (SSO), so users can log into the AWS Management Console or call the AWS API operations without you having to create an IAM user for everyone in your organization.
+
+* SNS, user notification
+
+  In Amazon SNS, to send push notifications to mobile devices using Amazon SNS and ADM, you need to obtain the following, except:
+
+  A. Client secret
+
+  **B. Client ID**
+
+  C. Device token
+
+  D. Registration ID
+
+  ***Explanation:*** [How User Notifications Work](https://docs.aws.amazon.com/sns/latest/dg/sns-how-user-notifications-work.html). The difference is that Amazon SNS communicates using the push notification services in order for the subscribed mobile endpoints to receive push notification messages sent to the topic.
+
+  [Prerequisites for Amazon SNS User Notifications](https://docs.aws.amazon.com/sns/latest/dg/sns-prerequisites-for-mobile-push-notifications.html). Generally speaking, you need the required credentials for connecting to the push notification service, a device token or registration ID (representing your mobile device and mobile app) received from the push notification service, and the mobile app registered with the push notification service.
+
+* EC2, block device
+
+  How many types of block devices does Amazon EC2 support?
+
+  A. 5
+
+  B. 1
+
+  **C. 2**
+
+  D. 4
+
+  ***Explanation:*** [Block Device Mapping](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/block-device-mapping-concepts.html#block-device-mapping-def)
+
+  Instance store volumes (virtual devices whose underlying hardware is physically attached to the host computer for the instance)
+
+  EBS volumes (remote storage devices)
+
 * 
 
