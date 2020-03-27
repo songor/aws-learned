@@ -800,6 +800,8 @@
 
   Isolate scan operations.
 
+  [Scan](https://docs.aws.amazon.com/amazondynamodb/latest/APIReference/API_Scan.html). `Scan` uses eventually consistent reads when accessing the data in a table; therefore, the result set might not include the changes to data in the table immediately before the operation began.
+
 * DynamoDB, partition key
 
   You are writing to a DynamoDB table and receive the following exception: " ProvisionedThroughputExceededException". Though according to your CloudWatch metrics for the table, you are not exceeding your provisioned throughput. What could be an explanation for this?
@@ -1034,6 +1036,10 @@
 
   ***Explanation:*** [Instance Metadata Categories](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instancedata-data-categories.html). mac - The instance's media access control (MAC) address. In cases where multiple network interfaces are present, this refers to the eth0 device (the device for which the device number is 0).
 
+  local-ipv4 - The private IPv4 address of the instance.
+
+  public-ipv4 - The public IPv4 address. If an Elastic IP address is associated with the instance, the value returned is the Elastic IP address.
+
   [Running Commands on Your Linux Instance at Launch](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/user-data.html#user-data-shell-scripts). When you launch an instance in Amazon EC2, you have the option of passing user data to the instance that can be used to perform common automated configuration tasks and even run scripts after the instance starts.
 
 * RDS, storage
@@ -1111,6 +1117,140 @@
   Instance store volumes (virtual devices whose underlying hardware is physically attached to the host computer for the instance)
 
   EBS volumes (remote storage devices)
+
+* Auto Scaling, terminate
+
+  Auto Scaling is configured with 3 AZs. Each zone has 5 instances running. If Auto Scaling wants to terminate an instance based on the policy action, which instance will it terminate first?
+
+  A. Terminate the first launched instance
+
+  **B. Randomly select the instance for termination**
+
+  C. Terminate the instance from the AZ which does not have a high AWS load
+
+  D. Terminate the instance from the AZ which has instances running near to the billing hour
+
+  ***Explanation:*** [Controlling Which Auto Scaling Instances Terminate During Scale In](https://docs.aws.amazon.com/autoscaling/ec2/userguide/as-instance-termination.html)
+
+* [Improving Data Access with Secondary Indexes](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/SecondaryIndexes.html)
+
+  Global secondary indexes can be created at the same time that you create a table. You can also add a new global secondary index to an existing table, or delete an existing global secondary index.
+
+  Local secondary indexes are created at the same time that you create a table. You cannot add a local secondary index to an existing table, nor can you delete any local secondary indexes that currently exist.
+
+* VPC, scenario
+
+  Can you SSH to your private machines that reside in a VPC from outside without elastic IP?
+
+  **A. Yes, but only if you have direct connect or vpn**
+
+  B. Only if you are using a non-US region
+
+  C. Only if you are using a US region
+
+  D. No
+
+  ***Explanation:*** [What is AWS Site-to-Site VPN?](https://docs.aws.amazon.com/vpn/latest/s2svpn/VPC_VPN.html). By default, instances that you launch into an Amazon VPC can't communicate with your own (remote) network. You can enable access to your remote network from your VPC by creating an AWS Site-to-Site VPN (Site-to-Site VPN) connection, and configuring routing to pass traffic through the connection.
+
+  [VPC with Public and Private Subnets (NAT)](https://docs.aws.amazon.com/vpc/latest/userguide/VPC_Scenario2.html). The configuration for this scenario includes a virtual private cloud (VPC) with a public subnet and a private subnet.
+
+  [VPC with a Private Subnet Only and AWS Site-to-Site VPN Access](https://docs.aws.amazon.com/vpc/latest/userguide/VPC_Scenario4.html). The configuration for this scenario includes a virtual private cloud (VPC) with a single private subnet, and a virtual private gateway to enable communication with your own network over an IPsec VPN tunnel.
+
+* [Setting Up for Amazon RDS](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_SettingUp.html#CHAP_SettingUp.Requirements)
+
+  On Amazon RDS, a Multi-AZ deployment creates a primary DB instance and a secondary standby DB instance in another Availability Zone for failover support. We recommend Multi-AZ deployments for production workloads to maintain high availability. For development and test purposes, you can use a deployment that isn't Multi-AZ.
+
+* [Working With Backups](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_WorkingWithAutomatedBackups.html)
+
+  During the automatic backup window, storage I/O might be suspended briefly while the backup process initializes (typically under a few seconds). You might experience elevated latencies for a few minutes during backups for Multi-AZ deployments.
+
+  If you don't specify a preferred backup window when you create the DB instance, Amazon RDS assigns a default 30-minute backup window. This window is selected at random from an 8-hour block of time for each AWS Region.
+
+* DynamoDB, data type
+
+  Which one of the following data types does Amazon DynamoDB not support?
+
+  **A. Arrays**
+
+  B. String
+
+  C. Binary
+
+  D. Number Set
+
+  ***Explanation:*** [Data Types](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/HowItWorks.NamingRulesDataTypes.html#HowItWorks.DataTypes)
+
+* IAM, identity
+
+  A corporate web application is deployed within an Amazon VPC, and is connected to the corporate data center via IPSec VPN. The application must authenticate against the on-premise LDAP server. Once authenticated, logged-in users can only access an S3 key space specific to the user. Which two approaches can satisfy the objectives? Choose 2 answers
+
+  A. The application authenticates against LDAP. The application then calls the IAM Security Service to login to IAM using the LDAP credentials. The application can use the IAM temporary credentials to access the appropriate S3 bucket
+
+  **B. The application authenticates against LDAP, and retrieves the name of an IAM role associated with the user. The application then calls the IAM Security Token Service to assume that IAM Role. The application can use the temporary credentials to access the appropriate S3 bucket**
+
+  C. The application authenticates against IAM Security Token Service using the LDAP credentials. The application uses those temporary AWS security credentials to access the appropriate S3 bucket
+
+  **D. Develop an identity broker which authenticates against LDAP, and then calls IAM Security Token Service to get IAM federated user credentials. The application calls the identity broker to get IAM federated user credentials with access to the appropriate S3 bucket**
+
+  E. Develop an identity broker which authenticates against IAM Security Token Service to assume an IAM Role to get temporary AWS security credentials. The application calls the identity broker to get AWS temporary security credentials with access to the appropriate S3 bucket
+
+  ***Explanation:*** Imagine that in your organization, you want to provide a way for users to copy data from their computers to a backup folder. You build an application that users can run on their computers. On the back end, the application reads and writes objects in an S3 bucket. Users don’t have direct access to AWS. Instead, the application communicates with an identity provider (IdP) to authenticate the user. The IdP gets the user information from your organization’s identity store (such as an LDAP directory) and then generates a SAML assertion that includes authentication and authorization information about that user. The application then uses that assertion to make a call to the `AssumeRoleWithSAML` API to get temporary security credentials. The app can then use those credentials to access a folder in the S3 bucket that’s specific to the user.
+
+* CloudFormation, pseudo parameters
+
+  Which of these is not a Pseudo Parameter in AWS CloudFormation?
+
+  A. AWS::StackName
+
+  B. AWS::AccountId
+
+  **C. AWS::StackArn**
+
+  D. AWS::NotificationARNs
+
+  ***Explanation:*** [Pseudo Parameters Reference](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/pseudo-parameter-reference.html)
+
+* S3, replication
+
+  A Developer has created an S3 bucket s3://mycoolapp and has enabled server across logging that points to the folder s3://mycoolapp/logs. The Developer moved 100 KB of Cascading Style Sheets (CSS) documents to the folder s3://mycoolapp/css, and then stopped work. When the developer came back a few days later, the bucket was 50 GB. What is the MOST likely cause of this situation?
+
+  A. The CSS files were not compressed and S3 versioning was enabled
+
+  **B. S3 replication was enabled on the bucket**
+
+  C. Logging into the same bucket caused exponential log growth
+
+  D. An S3 lifecycle policy has moved the entire CSS file to S3 Infrequent Access
+
+* SAM
+
+  [Deploying Serverless Applications](https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/serverless-deploying.html#serverless-sam-cli-using-package-and-deploy). After you develop and test your serverless application locally, you can deploy your application by using the `sam package` and `sam deploy` commands.
+
+  Both the `sam package` and `sam deploy` commands described in this section are identical to their AWS CLI equivalent commands `aws cloudformation package` and `aws cloudformation deploy`, respectively.
+
+  `package` - Packages the local artifacts (local paths) that your AWS CloudFormation template references. The command uploads local artifacts, such as source code for an AWS Lambda function or a Swagger file for an AWS API Gateway REST API, to an S3 bucket. The command returns a copy of your template, replacing references to local artifacts with the S3 location where the command uploaded the artifacts.
+
+  Use this command to quickly upload local artifacts that might be required by your template. After you package your template's artifacts, run the deploy command to `deploy` the returned template.
+
+  [Deploying Serverless Applications Gradually](https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/automating-updates-to-serverless-apps.html). With just a few lines of configuration, AWS SAM does the following for you:
+
+  Deploys new versions of your Lambda function, and automatically creates aliases that point to the new version.
+
+  Gradually shifts customer traffic to the new version until you're satisfied that it's working as expected, or you roll back the update.
+
+  Defines pre-traffic and post-traffic test functions to verify that the newly deployed code is configured correctly and your application operates as expected.
+
+  Rolls back the deployment if CloudWatch alarms are triggered.
+
+* Step Functions
+
+  [What Is AWS Step Functions?](https://docs.aws.amazon.com/step-functions/latest/dg/welcome.html). Step Functions offers a graphical console to visualize the components of your application as a series of steps. It automatically triggers and tracks each step, and retries when there are errors, so your application executes in order and as expected, every time.
+
+  [Creating a Step Functions State Machine That Uses Lambda](https://docs.aws.amazon.com/step-functions/latest/dg/tutorial-creating-lambda-state-machine.html). Lambda is well suited for implementing `Task` states, because Lambda functions are *stateless* (they have a predictable input-output relationship), easy to write, and don't require deploying code to a server instance.
+
+* [In-Memory Acceleration with DynamoDB Accelerator (DAX)](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/DAX.html)
+
+  DAX is a DynamoDB-compatible caching service that enables you to benefit from fast in-memory performance for demanding applications.
 
 * 
 
