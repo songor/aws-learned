@@ -346,6 +346,8 @@
 
   [Test Your Roles’ Access Policies Using the AWS Identity and Access Management Policy Simulator](https://aws.amazon.com/blogs/security/test-your-roles-access-policies-using-the-aws-identity-and-access-management-policy-simulator/). The policy simulator is a tool to help you author and validate the policies that set permissions on your AWS resources.
 
+  [IAM Policy Elements: Variables and Tags](https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_variables.html). Use AWS Identity and Access Management (IAM) policy variables as placeholders when you don't know the exact value of a resource or condition key when you write the policy.
+
 * S3, data consistency model
 
   A user has an S3 object in the US Standard region with the content "color=red". The user updates the object with the content as "color="white". If the user tries to read the value 1 minute after it was uploaded, what will S3 return?
@@ -802,6 +804,8 @@
 
   [Scan](https://docs.aws.amazon.com/amazondynamodb/latest/APIReference/API_Scan.html). `Scan` uses eventually consistent reads when accessing the data in a table; therefore, the result set might not include the changes to data in the table immediately before the operation began.
 
+  [Rate-Limited Scans in Amazon DynamoDB](https://aws.amazon.com/blogs/developer/rate-limited-scans-in-amazon-dynamodb/). When you scan your table in Amazon DynamoDB, you should follow the DynamoDB best practices for [avoiding sudden bursts of read activity](http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/QueryAndScanGuidelines.html). You may also want to limit a background `Scan` job to use a limited amount of your table’s provisioned throughput, so that it doesn’t interfere with your more important operations. Fortunately, the Google Guava libraries for Java include a RateLimiter class, which makes it easy to limit the amount of provisioned throughput you use.
+
 * DynamoDB, partition key
 
   You are writing to a DynamoDB table and receive the following exception: " ProvisionedThroughputExceededException". Though according to your CloudWatch metrics for the table, you are not exceeding your provisioned throughput. What could be an explanation for this?
@@ -1251,6 +1255,172 @@
 * [In-Memory Acceleration with DynamoDB Accelerator (DAX)](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/DAX.html)
 
   DAX is a DynamoDB-compatible caching service that enables you to benefit from fast in-memory performance for demanding applications.
+
+* [AWS Lambda Function Scaling](https://docs.aws.amazon.com/lambda/latest/dg/invocation-scaling.html)
+
+  As more events come in, Lambda routes them to available instances and creates new instances as needed. When the number of requests decreases, Lambda stops unused instances to free up scaling capacity for other functions.
+
+* [Request Quotas for each AWS KMS API operation](https://docs.aws.amazon.com/kms/latest/developerguide/requests-per-second.html#rps-table)
+
+* Lambda, log
+
+  A Developer created a Lambda function for a web application backend. When testing the Lambda function from the AWS Lambda console, the Developer can see that the function is being executed, but there is no log data being generated in Amazon CloudWatch Logs, even after several minutes. What could cause this situation?
+
+  A. The Lambda function does not have any explicit log statements for the log data to send it to CloudWatch Logs
+
+  B. The Lambda function is missing CloudWatch Logs as a source trigger to send log data
+
+  **C. The execution role for the Lambda function is missing permissions to write log data to the CloudWatch Logs**
+
+  D. The Lambda function is missing a target CloudWatch Log group
+
+  ***Explanation:*** [Monitoring and Troubleshooting Lambda Applications](https://docs.aws.amazon.com/lambda/latest/dg/lambda-monitoring.html). If your Lambda function code is executing, but you don't see any log data being generated after several minutes, this could mean that your execution role for the Lambda function didn't grant permissions to write log data to CloudWatch Logs.
+
+* [How the Amazon SQS FIFO API Works](https://aws.amazon.com/blogs/developer/how-the-amazon-sqs-fifo-api-works/)
+
+  Mix up a few different MessageGroupIds. This makes sense, for example, if you are tracking data from several different customers. The idea is if you use the customer ID as the MessageGroupId, the records for each customer will be delivered in order; there’s no particular ordering between records from different customers.
+
+* [Using the Default Credential Provider Chain](https://docs.aws.amazon.com/sdk-for-java/v1/developer-guide/credentials.html)
+
+* [Advanced environment customization with configuration files (`.ebextensions`)](https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/ebextensions.html). You can add AWS Elastic Beanstalk configuration files (`.ebextensions`) to your web application's source code to configure your environment and customize the AWS resources that it contains. Configuration files are YAML- or JSON-formatted documents with a `.config` file extension that you place in a folder named `.ebextensions` and deploy in your application source bundle.
+
+* DynamoDB, throughput
+
+  Which option has the highest read throughput?
+
+  A. Eventually consistent reads of 5 read capacity units reading items that are 4 KB in size
+
+  B. Strongly consistent reads of 5 read capacity units reading items that are 4 KB in size
+
+  **C. Eventually consistent reads of 15 read capacity units reading items that are 1 KB in size**
+
+  D. Strongly consistent reads of15 read capacity units reading items that are 1 KB in size
+
+  ***Explanation:*** 1 read capacity = 1 strongly consistent = 2 eventually consistent. Any item of 1KB and an item of 4KB will consume the same amount of RCU.
+
+  A - 5 * 2 = 10 items; B - 5 items; C - 15 * 2 = 30 items; D - 15 items
+
+* Lambda, layer
+
+  A Developer is creating a Lambda function and will be using external libraries that are not included in the standard Lambda libraries. What action would minimize the Lambda compute time consumed?
+
+  A. Install the dependencies and external libraries at the beginning of the Lambda function
+
+  B. Create a Lambda deployment package that includes the external libraries
+
+  C. Copy the external libraries to Amazon S3, and reference the external libraries to the S3 location
+
+  **D. Install the external libraries in Lambda to be available to all Lambda functions**
+
+  ***Explanation:*** [Best Practices for Working with AWS Lambda Functions](https://docs.aws.amazon.com/lambda/latest/dg/best-practices.html)
+
+  **Minimize your deployment package size to its runtime necessities.** This will reduce the amount of time that it takes for your deployment package to be downloaded and unpacked ahead of invocation.
+
+  **Reduce the time it takes Lambda to unpack deployment packages** authored in Java by putting your dependency `.jar` files in a separate /lib directory.
+
+  [AWS Lambda Deployment Package in Java](https://docs.aws.amazon.com/lambda/latest/dg/java-package.html). To keep your deployment package size small, package your function's dependencies in layers. Layers let you manage your dependencies independently, can be used by multiple functions, and can be shared with other accounts.
+
+  [AWS Lambda Layers](https://docs.aws.amazon.com/lambda/latest/dg/configuration-layers.html). You can configure your Lambda function to pull in additional code and content in the form of layers. A layer is a ZIP archive that contains libraries, a custom runtime, or other dependencies. With layers, you can use libraries in your function without needing to include them in your deployment package.
+
+* [Deployment policies and settings](https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/using-features.rolling-version-deploy.html)
+
+  **All at once** – Deploy the new version to all instances simultaneously. All instances in your environment are out of service for a short time while the deployment occurs.
+
+  **Rolling** – Deploy the new version in batches. Each batch is taken out of service during the deployment phase, reducing your environment's capacity by the number of instances in a batch.
+
+  **Rolling with additional batch** – Deploy the new version in batches, but first launch a new batch of instances to ensure full capacity during the deployment process.
+
+  **Immutable** – Deploy the new version to a fresh group of instances by performing an immutable update.
+
+* [GenerateDataKey](https://docs.aws.amazon.com/kms/latest/APIReference/API_GenerateDataKey.html). Generates a unique symmetric data key. This operation returns a plaintext copy of the data key and a copy that is encrypted under a customer master key (CMK) that you specify. You can use the plaintext key to encrypt your data outside of AWS KMS and store the encrypted data key with the encrypted data.
+
+* [Retrieving Instance Metadata](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instancedata-data-retrieval.html)
+
+  To view all categories of instance metadata from within a running instance, use the following URI.
+
+  `http://169.254.169.254/latest/meta-data/`
+
+  The IP address `169.254.169.254` is a link-local address and is valid only from the instance.
+
+* Lambda, improve the performance
+
+  The Lambda function below is being called through an API using Amazon API Gateway. The average execution time for the Lambda function is about 1 second. What two actions can be taken to improve the performance of this Lambda function without increasing the cost of the solution? (Select two)
+
+  ```c
+  include "3rd party encryption module"
+  include "match module"
+  lambda_handler(event, context)
+      # Connect to the RDS Database
+      # Perform some processing reading data from the RDS database
+  ```
+
+  **A. Package only the modules the Lambda function requires**
+
+  B. Use Amazon DynamoDB instead of Amazon RDS
+
+  **C. Move the initialization of the variable Amazon RDS connection outside of the handler function**
+
+  **D. Implement custom database connection pooling with the Lambda function**
+
+  **E. Implement local caching of Amazon RDS data so Lambda can re-use the cache**
+
+  ***Explanation:***
+
+  [AWS Lambda Execution Context](https://docs.aws.amazon.com/lambda/latest/dg/runtimes-context.html). The execution context is a temporary runtime environment that initializes any external dependencies of your Lambda function code, such as database connections or HTTP endpoints. This affords subsequent invocations better performance because there is no need to "cold-start" or initialize those external dependencies.
+
+  Objects declared outside of the function's handler method remain initialized, providing additional optimization when the function is invoked again. For example, if your Lambda function establishes a database connection, instead of reestablishing the connection, the original connection is used in subsequent invocations. We suggest adding logic in your code to check if a connection exists before creating one.
+
+  Each execution context provides 512 MB of additional disk space in the `/tmp` directory. The directory content remains when the execution context is frozen, providing transient cache that can be used for multiple invocations. You can add extra code to check if the cache has the data that you stored.
+
+  [Best Practices for AWS Lambda Container Reuse](https://medium.com/capital-one-tech/best-practices-for-aws-lambda-container-reuse-6ec45c74b67e)
+
+  [Using Amazon RDS Proxy with AWS Lambda](https://aws.amazon.com/blogs/compute/using-amazon-rds-proxy-with-aws-lambda/). Your Lambda functions interact with RDS Proxy instead of your database instance. It handles the connection pooling necessary for scaling many simultaneous connections created by concurrent Lambda functions. This allows your Lambda applications to reuse existing connections, rather than creating new connections for every function invocation.
+
+  [Database Caching](https://aws.amazon.com/caching/database-caching/). The three most common types of database caches are the following:
+
+  Database Integrated Caches: Some databases such as Amazon Aurora offer an integrated cache that is managed within the database engine and has built-in write-through capabilities. When the underlying data changes on the database table, the database updates its cache automatically, which is great.
+
+  Local Caches: A local cache stores your frequently used data within your application. This not only speeds up your data retrieval but also removes network traffic associated with retrieving data, making data retrieval faster than other caching architectures.
+
+  Remote caches: Remote caches are stored on dedicated servers and typically built upon key/value NoSQL stores such as Redis and Memcached. They provide hundreds of thousands to up-to a million requests per second per cache node.
+
+* API Gateway, mapping template
+
+  A legacy service has an XML-based SOAP interface. The Developer wants to expose the functionality of the service to external clients with the Amazon API Gateway. Which technique will accomplish this?
+
+  **A. Create a RESTful API with the API Gateway; transform the incoming JSON into a valid XML message for the SOAP interface using mapping templates**
+
+  B. Create a RESTful API with the API Gateway; pass the incoming JSON to the SOAP interface through an Application Load Balancer
+
+  C. Create a RESTful API with the API Gateway; pass the incoming XML to the SOAP interface through an Application Load Balancer
+
+  D. Create a RESTful API with the API Gateway; transform the incoming XML into a valid message for the SOAP interface using mapping templates
+
+* CodeBuild, build details
+
+  A company is using AWS CodeBuild to compile a website from source code stored in AWS CodeCommit. A recent change to the source code has resulted in the CodeBuild project being unable to successfully compile the website.How should the Developer identify the cause of the failures?
+
+  A. Modify the buildspec.yml file to include steps to send the output of build commands to Amazon CloudWatch
+
+  B. Use a custom Docker image that includes the AWS X-Ray agent in the AWS CodeBuild project configuration
+
+  **C. Check the build logs of the failed phase in the last build attempt in the AWS CodeBuild project build history**
+
+  D. Manually re-run the build process on a local machine so that the output can be visualized
+
+* Lambda, limits
+
+  A company has written a Java AWS Lambda function to be triggered whenever a user uploads an image to an Amazon S3 bucket. The function converts the original image to several different formats and then copies the resulting images to another Amazon S3 bucket. The Developers find that no images are being copied to the second Amazon S3 bucket. They have tested the code on an Amazon EC2 instance with 1GB of RAM, and it takes an average of 500 seconds to complete. What is the MOST likely cause of the problem?
+
+  A. The Lambda function has insufficient memory and needs to be increased to 1 GB to match the Amazon EC2 instance
+
+  B. Files need to be copied to the same Amazon S3 bucket for processing, so the second bucket needs to be deleted
+
+  **C. Lambda functions have a maximum execution limit of 300 seconds, therefore the function is not completing**
+
+  D. There is a problem with the Java runtime for Lambda, and the function needs to be converted to node.js
+
+  ***Explanation:*** [AWS Lambda Limits](https://docs.aws.amazon.com/lambda/latest/dg/gettingstarted-limits.html). Function [timeout](https://docs.aws.amazon.com/lambda/latest/dg/configuration-console.html) - 900 seconds (15 minutes); Function [memory allocation](https://docs.aws.amazon.com/lambda/latest/dg/configuration-console.html) - 128 MB to 3,008 MB, in 64 MB increments.
 
 * 
 
