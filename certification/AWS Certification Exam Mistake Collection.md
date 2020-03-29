@@ -362,7 +362,7 @@
 
   ***Explanation:*** [Amazon S3 Data Consistency Model](https://docs.aws.amazon.com/AmazonS3/latest/dev/Introduction.html). Amazon S3 offers eventual consistency for overwrite PUTS and DELETES in all Regions.
 
-  Amazon S3 achieves high availability by replicating data across multiple servers within AWS data centers.
+  Amazon S3 achieves high availability by replicating data across multiple servers within AWS data centers. If a PUT request is successful, your data is safely stored. However, information about the changes must replicate across Amazon S3, which can take some time.
 
 * Elastic Beanstalk, health colors
 
@@ -1421,6 +1421,172 @@
   D. There is a problem with the Java runtime for Lambda, and the function needs to be converted to node.js
 
   ***Explanation:*** [AWS Lambda Limits](https://docs.aws.amazon.com/lambda/latest/dg/gettingstarted-limits.html). Function [timeout](https://docs.aws.amazon.com/lambda/latest/dg/configuration-console.html) - 900 seconds (15 minutes); Function [memory allocation](https://docs.aws.amazon.com/lambda/latest/dg/configuration-console.html) - 128 MB to 3,008 MB, in 64 MB increments.
+
+* [Add a Manual Approval Action to a Pipeline in CodePipeline](https://docs.aws.amazon.com/codepipeline/latest/userguide/approvals-action-add.html). You can add an approval action to a stage in a CodePipeline pipeline at the point where you want the pipeline to stop so someone can manually approve or reject the action.
+
+* AWS, legacy application
+
+  You are tasked with moving a legacy application from a virtual machine running inside your datacenter to an Amazon VPC. Unfortunately this app requires access to a number of on-premises services and no one who configured the app still works for your company. Even worse there's no documentation for it. What will allow the application running inside the VPC to reach back and access its internal dependencies without being reconfigured? (Choose 3 answers)
+
+  **A. An AWS Direct Connect link between the VPC and the network housing the internal services**
+
+  B. An Internet Gateway to allow a VPN connection
+
+  C. An Elastic IP address on the VPC instance
+
+  **D. An IP address space that does not conflict with the one on-premises**
+
+  **E. A VM Import of the current virtual machine**
+
+  ***Explanation:*** A - correct, you could use this to have the instance you migrated into the VPC communicate back to the legacy on-premises servers. (You could also use a VPN instead of a circuit if you wanted).
+
+  B - incorrect, virtual private gateway.
+
+  C - incorrect, there is nothing in the question to indicate anything needs to communicate over the Internet.
+
+  D - correct, you would totally need to make sure there were no private IP conflicts between your VPC CIDR and your internal on-premises networks if you wanted the instance in the VPC to talk to the legacy on-premises servers.
+
+  E - correct, you would definitely want to leverage this in order to easily migrate the VM from on-premises to AWS.
+
+* EC2, enhanced networking
+
+  You have multiple Amazon EC2 instances running in a cluster across multiple Availability Zones within the same region. What combination of the following should be used to ensure the highest network performance (packets per second), lowest latency, and lowest jitter? Choose 3 answers
+
+  A. Amazon EC2 placement groups
+
+  **B. Enhanced networking**
+
+  C. Amazon PV AMI
+
+  **D. Amazon HVM AMI**
+
+  E. Amazon Linux
+
+  **F. Amazon VPC**
+
+  ***Explanation:*** [Enhanced Networking](https://aws.amazon.com/ec2/features/). In order to take advantage of Enhanced Networking, you should launch an HVM AMI in VPC, and install the appropriate driver.
+
+* EC2, placement group
+
+  A group of researchers is studying the migration pattern of a beetle that eats and destroys gram. The researchers must process massive amounts of data and run statistics. Which one of the following options provides the high performance computing for this purpose?
+
+  A. Configure an Autoscaling Scaling group to launch dozens of spot instances to run the statistical analysis simultaneously
+
+  B. Launch AMI instances that support SR-IOV in a single Availability Zone
+
+  C. Launch compute optimized (C4) instances in at least two Availability Zones
+
+  **D. Launch enhanced network type instances in a placement group**
+
+  ***Explanation:*** [Placement Groups](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/placement-groups.html). *Cluster* – packs instances close together inside an Availability Zone. This strategy enables workloads to achieve the low-latency network performance necessary for tightly-coupled node-to-node communication that is typical of HPC(High Performance Computing) applications.
+
+* CloudWatch, alarm
+
+  A user is running a batch process on EBS backed EC2 instances. The batch process starts a few instances to process Hadoop Map reduce jobs, which can run between 500 - 600 minutes or sometimes for more time. The user wants to configure that the instance gets terminated only when the process is completed. How can the user configure this with CloudWatch?
+
+  **A. Setup the CloudWatch action to terminate the instance when the CPU utilization is less than 5%**
+
+  B. Setup the CloudWatch with Auto Scaling to terminate all the instances
+
+  C. Setup a job which terminates all instances after 600 minutes
+
+  D. It is not possible to terminate instances automatically
+
+  ***Explanation:*** [Create Alarms to Stop, Terminate, Reboot, or Recover an Instance](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/UsingAlarmActions.html). Using Amazon CloudWatch alarm actions, you can create alarms that automatically stop, terminate, reboot, or recover your EC2 instances. You can use the stop or terminate actions to help you save money when you no longer need an instance to be running.
+
+* CloudWatch, permission
+
+  An AWS account owner has setup multiple IAM users. One IAM user only has CloudWatch access. He has setup the alarm action, which stops the EC2 instances when the CPU utilization is below the threshold limit. What will happen in this case?
+
+  A. It is not possible stop the instance using the CloudWatch alarm
+
+  B. CloudWatch will stop the instance when the action is executed
+
+  C. The user cannot set an alarm on EC2 since he does not have the permission
+
+  **D. The user can setup the action but it will not be executed if the user does not have EC2 rights**
+
+  ***Explanation:*** [Create Alarms to Stop, Terminate, Reboot, or Recover an Instance](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/UsingAlarmActions.html). If you have read/write permissions for Amazon CloudWatch but not for Amazon EC2, you can still create an alarm but the stop or terminate actions aren't performed on the instance. However, if you are later granted permission to use the associated Amazon EC2 API actions, the alarm actions you created earlier are performed.
+
+* IAM, access the AWS Management Console
+
+  Your company has recently extended its datacenter into a VPC on AWS to add burst computing capacity as needed. Members of your Network Operations Center need to be able to go to the AWS Management Console and administer Amazon EC2 instances as necessary. You don't want to create new IAM users for each NOC member and make those users sign in again to the AWS Management Console. Which option below will meet the needs for your NOC members?
+
+  A. Use OAuth 2.0 to retrieve temporary AWS security credentials to enable your NOC members to sign in to the AWS Management Console
+
+  B. Use Web Identity Federation to retrieve AWS temporary security credentials to enable your NOC members to sign in to the AWS Management Console
+
+  **C. Use your on-premises SAML 2.0-compliant identity provider (IDP) to grant the NOC members federated access to the AWS Management Console via the AWS single sign-on (SSO) endpoint**
+
+  D. Use your on-premises SAML 2.0-compliant identity provider (IDP) to retrieve temporary security credentials to enable NOC members to sign in to the AWS Management Console
+
+  ***Explanation:*** [Enabling SAML 2.0 Federated Users to Access the AWS Management Console](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_providers_enable-console-saml.html). This specific use of SAML differs from the more general one illustrated at [About SAML 2.0-based Federation](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_providers_saml.html) because this workflow opens the AWS Management Console on behalf of the user. This requires the use of the AWS SSO endpoint instead of directly calling the `AssumeRoleWithSAML` API. The endpoint calls the API for the user and returns a URL that automatically redirects the user's browser to the AWS Management Console.
+
+* IAM, identity
+
+  Your fortune 500 company has under taken a TCO analysis evaluating the use of Amazon S3 versus acquiring more hardware. The outcome was that all employees would be granted access to use Amazon S3 for storage of their personal documents. Which of the following will you need to consider so you can set up a solution that incorporates single sign-on from your corporate AD or LDAP directory and restricts access for each user to a designated user folder in a bucket? (Choose 3 Answers)
+
+  **A. Setting up a federation proxy or identity provider**
+
+  **B. Using AWS Security Token Service to generate temporary tokens Tagging each folder in the bucket**
+
+  C. Tagging each folder in the bucket
+
+  **D. Configuring IAM role**
+
+  E. Setting up a matching IAM user for every user in your corporate directory that needs access to a folder in the bucket
+
+* CloudWatch, RDS metrics
+
+  You run a web application with the following components Elastic Load Balancer (ELB), 3 Web/Application servers, 1 MySQL RDS database with read replicas, and Amazon Simple Storage Service (Amazon S3) for static content. Average response time for users is increasing slowly. What three CloudWatch RDS metrics will allow you to identify if the database is the bottleneck? Choose 3 answers
+
+  **A. The number of outstanding IOs waiting to access the disk**
+
+  **B. The amount of write latency**
+
+  C. The amount of disk space occupied by binary logs on the master
+
+  D. The amount of time a Read Replica DB Instance lags behind the source DB Instance
+
+  **E. The average number of disk I/O operations per second**
+
+  ***Explanation:*** [Overview of Monitoring Amazon RDS](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/MonitoringOverview.html). A - DiskQueueDepth; B - WriteLatency; C - BinLogDiskUsage; D - ReplicaLag; E - ReadIOPS / WriteIOPS.
+
+  [Monitoring RDS MySQL performance metrics](https://www.datadoghq.com/blog/monitoring-rds-mysql-performance-metrics/)
+
+  [Working with Read Replicas](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_ReadRepl.html). Amazon RDS then uses the asynchronous replication method for the DB engine to update the Read Replica whenever there is a change to the source DB instance.
+
+* [Troubleshooting Applications on Amazon RDS](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/APITroubleshooting.html). Typically, you want your application to check whether a request generated an error before you spend any time processing results. The easiest way to find out if an error occurred is to look for an `Error` node in the response from the Amazon RDS API.
+
+* RDS, event notification
+
+  A sys admin is planning to subscribe to the RDS event notifications. For which of the below mentioned source categories the subscription cannot be configured?
+
+  A. DB security group
+
+  B. DB snapshot
+
+  **C. DB options group**
+
+  D. DB parameter group
+
+  ***Explanation:*** [Using Amazon RDS Event Notification](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_Events.html). Amazon RDS groups these events into categories that you can subscribe to so that you can be notified when an event in that category occurs. You can subscribe to an event category for a DB instance, DB snapshot, DB parameter group, or DB security group. 
+
+  You can easily turn off notification without deleting a subscription by choosing **No** for **Enabled** in the Amazon RDS console or by setting the `Enabled` parameter to `false` using the AWS CLI or Amazon RDS API.
+
+* RDS, Oracle Database license
+
+  What is the name of licensing model in which I can use your existing Oracle Database licenses to run Oracle deployments on Amazon RDS?
+
+  **A. Bring Your Own License**
+
+  B. Role Bases License
+
+  C. Enterprise License
+
+  D. License Included
+
+  ***Explanation:*** [What types of licensing options are available with Amazon RDS for Oracle?](https://aws.amazon.com/rds/oracle/faqs/)
 
 * 
 
