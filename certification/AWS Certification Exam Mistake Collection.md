@@ -1728,5 +1728,82 @@
 
 * [Caching Strategies](https://docs.aws.amazon.com/AmazonElastiCache/latest/mem-ug/Strategies.html). cache-aside = lazy loading
 
-* 
+* CloudFront, encryption in transit
 
+  An organization is using Amazon CloudFront to ensure that its users experience low-latency access to its web application. The organization has identified a need to encrypt all traffic between users and CloudFront, and all traffic between CloudFront and the web application. How can these requirements be met? (Choose two)
+
+  A. Use AWS KMS to encrypt traffic between CloudFront and the web application
+
+  **B. Set the Origin Protocol Policy to "HTTPS Only"**
+
+  C. Set the Origin's HTTP Port to 443
+
+  **D. Set the Viewer Protocol Policy to "HTTPS Only" or "Redirect HTTP to HTTPS"**
+
+  E. Enable the CloudFront option Restrict Viewer Access
+
+  ***Explanation:*** [Encryption in Transit](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/data-protection-summary.html#data-protection-summary-encryption-in-transit)
+
+  [Requiring HTTPS for Communication Between Viewers and CloudFront](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/using-https-viewers-to-cloudfront.html)
+
+  [Requiring HTTPS for Communication Between CloudFront and Your Custom Origin](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/using-https-cloudfront-to-custom-origin.html)
+
+* DynamoDB
+
+  Queries to an Amazon DynamoDB table are consuming a large amount of read capacity. The table has a significant number of large attributes. The application does not need all of the attribute data. How can DynamoDB costs be minimized while maximizing application performance?
+
+  A. Batch all the writes, and perform the write operations when no or few reads are being performed
+
+  **B. Create a global secondary index with a minimum set of projected attributes**
+
+  C. Implement exponential backoffs in the application
+
+  D. Load balance the reads to the table using an Application Load Balancer
+
+* ECR, login
+
+  AWS CodeBuild builds code for an application, creates the Docker image, pushes the image to Amazon Elastic Container Registry (Amazon ECR), and tags the image with a unique identifier. If the Developers already have AWS CLI configured on their workstations, how can the Docker images be pulled to the workstations?
+
+  A. Run the following: docker pull REPOSITORY URI : TAG
+
+  **B. Run the output of the following: aws ecr get-login and then run: docker pull REPOSITORY URI : TAG**
+
+  C. Run the following: aws ecr get-login and then run: docker pull REPOSITORY URI : TAG
+
+  D. Run the output of the following: aws ecr get-download-url-for-layer and then run: docker pull REPOSITORY URI : TAG
+
+  ***Explanation:*** [get-login](https://docs.aws.amazon.com/cli/latest/reference/ecr/get-login.html). This command retrieves a token that is valid for a specified registry for 12 hours, and then it prints a `docker login` command with that authorization token. You can execute the printed command to log in to your registry with Docker. After you have logged in to an Amazon ECR registry with this command, you can use the Docker CLI to push and pull images from that registry until the token expires.
+
+* DynamoDB, TTL
+
+  A company caches session information for a web application in an Amazon DynamoDB table. The company wants an automated way to delete old items from the table. What is the simplest way to do this?
+
+  A. Write a script that deletes old records; schedule the scripts as a cron job on an Amazon EC2 instance
+
+  **B. Add an attribute with the expiration time; enable the Time To Live feature based on that attribute**
+
+  C. Each day, create a new table to hold session data; delete the previous day's table
+
+  D. Add an attribute with the expiration time; name the attribute ItemExpiration
+
+  ***Explanation:*** [Expiring Items Using Time to Live (TTL)](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/TTL.html). Time to Live (TTL) for Amazon DynamoDB lets you define when items in a table expire so that they can be automatically deleted from the database.
+
+* [Using AWS CLI Pagination Options](https://docs.aws.amazon.com/cli/latest/userguide/cli-usage-pagination.html)
+
+* KMS
+
+  An application running on Amazon EC2 instances must access objects within an Amazon S3 bucket that are encrypted using server-side encryption using AWS KMS encryption keys (SSE-KMS). The application must have access to the customer master key (CMK) to decrypt the objects. Which combination of steps will grant the application access? (Select TWO)
+
+  A. Write an S3 bucket policy that grants the bucket access to the key
+
+  B. Grant access to the key in the IAM EC2 role attached to the application's EC2 instances
+
+  C. Write a key policy that enables IAM policies to grant access to the key
+
+  D. Grant access to the key in the S3 bucket's ACL
+
+  E. Create a Systems Manager parameter that exposes the KMS key to the EC2 instances
+
+  ***Explanation:*** [How to use KMS and IAM to enable independent security controls for encrypted data in S3](https://aws.amazon.com/blogs/security/how-to-use-kms-and-iam-to-enable-independent-security-controls-for-encrypted-data-in-s3/)
+
+* 
