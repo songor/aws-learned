@@ -1588,5 +1588,145 @@
 
   ***Explanation:*** [What types of licensing options are available with Amazon RDS for Oracle?](https://aws.amazon.com/rds/oracle/faqs/)
 
+* RDS, data transfer pricing
+
+  What is the minimum charge for the data transferred between Amazon RDS and Amazon EC2 Instances in the same Availability Zone?
+
+  A. USD 0.10 per GB
+
+  **B. No charge. It is free**
+
+  C. USD 0.02 per GB
+
+  D. USD 0.01 per GB
+
+  ***Explanation:*** [Data Transfer](https://aws.amazon.com/rds/mysql/pricing/). Data transferred between Amazon RDS and Amazon EC2 Instances in the same Availability Zone is free.
+
+* RDS, access
+
+  Does Amazon RDS allow direct host access via Telnet, Secure Shell (SSH), or Windows Remote Desktop Connection?
+
+  A. Yes
+
+  **B. No**
+
+  C. Depends on if it is in VPC or not
+
+  ***Explanation:*** [Amazon RDS DB Instances](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Overview.DBInstance.html). Amazon RDS supports access to databases using any standard SQL client application. Amazon RDS does not allow direct host access.
+
+* [Q: What are the different delivery formats/transports for receiving notifications?](https://aws.amazon.com/sns/faqs/)
+
+* [CodeDeploy AppSpec File Reference](https://docs.aws.amazon.com/codedeploy/latest/userguide/reference-appspec-file.html#appspec-reference-server). An AppSpec file must be a YAML-formatted file named `appspec.yml` and it must be placed in the root of the directory structure of an application's source code. Otherwise, deployments fail.
+
+* [Tutorial: Using AWS Lambda with Amazon S3](https://docs.aws.amazon.com/lambda/latest/dg/with-s3-example.html). Suppose you want to create a thumbnail for each image file that is uploaded to a bucket. You can create a Lambda function (`CreateThumbnail`) that Amazon S3 can invoke when objects are created. Then, the Lambda function can read the image object from the source bucket and create a thumbnail image target bucket.
+
+* API Gateway, Swagger
+
+  A Developer must repeatedly and consistently deploy a serverless RESTful API on AWS. Which techniques will work? (Choose two)
+
+  A. Define a Swagger file. Use AWS Elastic Beanstalk to deploy the Swagger file
+
+  B. Define a Swagger file. Use AWS CodeDeploy to deploy the Swagger file
+
+  **C. Deploy a SAM template with an inline Swagger definition**
+
+  **D. Define a Swagger file. Deploy a SAM template that references the Swagger file**
+
+  E. Define an inline Swagger definition in a Lambda function. Invoke the Lambda function
+
+  ***Explanation:*** [How to deploy a Swagger specification to Amazon API Gateway using CloudFormation](https://sookocheff.com/post/api/deploying-swagger-to-api-gateway/). Amazon’s API Gateway supports the direct importing of Swagger specification files using CloudFormation rules. To do this, you have two choices. Injecting the `swagger.json` or `swagger.yaml` file directly into the `Body` field of the CloudFormation template, or uploading the `swagger.json` or `swagger.yaml` file to an S3 location and setting that location as the `BodyS3Location` field of the CloudFormation template.
+
+* [AWS Systems Manager Parameter Store](https://docs.aws.amazon.com/systems-manager/latest/userguide/systems-manager-parameter-store.html). AWS Systems Manager Parameter Store provides secure, hierarchical storage for configuration data management and secrets management. You can store data such as passwords, database strings, Amazon EC2 instance IDs, Amazon Machine Image (AMI) IDs, and license codes as parameter values. You can store values as plain text or encrypted data. You can reference Systems Manager parameters in your scripts, commands, SSM documents, and configuration and automation workflows by using the unique name that you specified when you created the parameter.
+
+* [Enabling API Caching to Enhance Responsiveness](https://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-caching.html). A client of your API can invalidate an existing cache entry and reload it from the integration endpoint for individual requests. The client must send a request that contains the `Cache-Control: max-age=0` header. The client receives the response directly from the integration endpoint instead of the cache, provided that the client is authorized to do so. This replaces the existing cache entry with the new response, which is fetched from the integration endpoint.
+
+* S3, HTTPS
+
+  An application running on EC2 instances is storing data in an S3 bucket. Security policy mandates that all data must be encrypted in transit. How can the Developer ensure that all traffic to the S3 bucket is encrypted?
+
+  A. Install certificates on the EC2 instances
+
+  B. Create a bucket policy that allows traffic where SecureTransport is true
+
+  C. Create an HTTPS redirect on the EC2 instances
+
+  **D. Create a bucket policy that denies traffic where SecureTransport is false**
+
+  ***Explanation:*** [How to Use Bucket Policies and Apply Defense-in-Depth to Help Secure Your Amazon S3 Data](https://aws.amazon.com/blogs/security/how-to-use-bucket-policies-and-apply-defense-in-depth-to-help-secure-your-amazon-s3-data/)
+
+* ECS
+
+  A company is developing a new online game that will run on top of Amazon ECS. Four distinct Amazon ECS services will be part of the architecture, each requiring specific permissions to various AWS services. The company wants to optimize the use of the underlying Amazon EC2 instances by bin packing the containers based on memory reservation. Which configuration would allow the Development team to meet these requirements MOST securely?
+
+  A. Create a new Identity and Access Management (IAM) instance profile containing the required permissions for the various ECS services, then associate that instance role with the underlying EC2 instances
+
+  B. Create four distinct IAM roles, each containing the required permissions for the associated ECS service, then configure each ECS service to reference the associated IAM role
+
+  C. Create four distinct IAM roles, each containing the required permissions for the associated ECS service, then, create an IAM group and configure the ECS cluster to reference that group
+
+  **D. Create four distinct IAM roles, each containing the required permissions for the associated ECS service, then configure each ECS task definition to reference the associated IAM role**
+
+  ***Explanation:*** [Help Secure Container-Enabled Applications with IAM Roles for ECS Tasks](https://aws.amazon.com/blogs/compute/help-secure-container-enabled-applications-with-iam-roles-for-ecs-tasks/). With the introduction of the newly-launched IAM roles for ECS tasks, you can now secure your infrastructure further by assigning an IAM role directly to the ECS task rather than to the EC2 container instance. This way, you can have one task that uses a specific IAM role for access to S3 and one task that uses an IAM role to access a DynamoDB table.
+
+  [Amazon ECS Task Definitions](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/task_definitions.html)
+
+* S3, SSE
+
+  A company needs to encrypt data at rest, but it wants to leverage an AWS managed service using its own master key. Which of the following AWS service can be used to meet these requirements?
+
+  A. SSE with Amazon S3
+
+  **B. SSE with AWS KMS**
+
+  C. Client-side encryption
+
+  D. AWS IAM roles and policies
+
+  ***Explanation:*** [Protecting Data Using Server-Side Encryption](https://docs.aws.amazon.com/AmazonS3/latest/dev/serv-side-encryption.html). You have three mutually exclusive options, depending on how you choose to manage the encryption keys.
+
+  **Server-Side Encryption with Amazon S3-Managed Keys (SSE-S3)**. When you use Server-Side Encryption with Amazon S3-Managed Keys (SSE-S3), each object is encrypted with a unique key. As an additional safeguard, it encrypts the key itself with a master key that it regularly rotates.
+
+  SSE-S3 requires that Amazon S3 manage the data and master encryption keys.
+
+  **Server-Side Encryption with Customer Master Keys (CMKs) Stored in AWS Key Management Service (SSE-KMS)**. Additionally, you can create and manage customer managed CMKs or use AWS managed CMKs that are unique to you, your service, and your Region.
+
+  SSE-KMS requires that AWS manage the data key but you manage the [customer master key](https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#master_keys) (CMK) in AWS KMS.
+
+  **Server-Side Encryption with Customer-Provided Keys (SSE-C)**. With Server-Side Encryption with Customer-Provided Keys (SSE-C), you manage the encryption keys and Amazon S3 manages the encryption, as it writes to disks, and decryption, when you access your objects. 
+
+  SSE-C requires that you manage the encryption key.
+
+* DynamoDB Streams
+
+  A Developer must trigger an AWS Lambda function based on the item lifecycle activity in an Amazon DynamoDB table. How can the Developer create the solution?
+
+  A. Enable a DynamoDB stream that publishes an Amazon SNS message. Trigger the Lambda function synchronously from the SNS message
+
+  B. Enable a DynamoDB stream that publishes an SNS message. Trigger the Lambda function asynchronously from the SNS message
+
+  **C. Enable a DynamoDB stream, and trigger the Lambda function synchronously from the stream**
+
+  D. Enable a DynamoDB stream, and trigger the Lambda function asynchronously from the stream
+
+  ***Explanation:*** [DynamoDB Streams and AWS Lambda Triggers](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Streams.Lambda.html). Amazon DynamoDB is integrated with AWS Lambda so that you can create *triggers*—pieces of code that automatically respond to events in DynamoDB Streams. With triggers, you can build applications that react to data modifications in DynamoDB tables.
+
+  If you enable DynamoDB Streams on a table, you can associate the stream Amazon Resource Name (ARN) with an AWS Lambda function that you write. Immediately after an item in the table is modified, a new record appears in the table's stream. AWS Lambda polls the stream and invokes your Lambda function synchronously when it detects new stream records.
+
+*  Cognito
+
+  A social media company is using Amazon Cognito in order to synchronize profiles across different mobile devices, to enable end users to have a seamless experience. Which of the following configurations can be used to silently notify users whenever an update is available on all other devices?
+
+  A. Modify the user pool to include all the devices which keep them in sync
+
+  B. Use the SyncCallback interface to receive notifications on the application
+
+  C. Use an Amazon Cognito stream to analyze the data and push the notifications
+
+  **D. Use the push synchronization feature with the appropriate IAM role**
+
+  ***Explanation:*** [Push Sync](https://docs.aws.amazon.com/cognito/latest/developerguide/push-sync.html). Amazon Cognito automatically tracks the association between identity and devices. Using the push synchronization, or push sync feature, you can ensure that every instance of a given identity is notified when identity data changes. Push sync ensures that, whenever the sync store data changes for a particular identity, all devices associated with that identity receive a silent push notification informing them of the change.
+
+* [Caching Strategies](https://docs.aws.amazon.com/AmazonElastiCache/latest/mem-ug/Strategies.html). cache-aside = lazy loading
+
 * 
 
