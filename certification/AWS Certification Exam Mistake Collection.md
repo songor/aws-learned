@@ -1796,9 +1796,9 @@
 
   A. Write an S3 bucket policy that grants the bucket access to the key
 
-  B. Grant access to the key in the IAM EC2 role attached to the application's EC2 instances
+  **B. Grant access to the key in the IAM EC2 role attached to the application's EC2 instances**
 
-  C. Write a key policy that enables IAM policies to grant access to the key
+  **C. Write a key policy that enables IAM policies to grant access to the key**
 
   D. Grant access to the key in the S3 bucket's ACL
 
@@ -1806,4 +1806,127 @@
 
   ***Explanation:*** [How to use KMS and IAM to enable independent security controls for encrypted data in S3](https://aws.amazon.com/blogs/security/how-to-use-kms-and-iam-to-enable-independent-security-controls-for-encrypted-data-in-s3/)
 
+* X-Ray, ECS
+
+  A Developer wants to enable AWS X-Ray for a secure application that runs in an Amazon ECS environment. What combination of steps will enable X-Ray? (Select THREE)
+
+  **A. Create a Docker image that runs the X-Ray daemon**
+
+  **B. Add instrumentation to the application code for X-Ray**
+
+  C. Install the X-Ray daemon on the underlying EC2 instance
+
+  D. Configure and use an IAM EC2 instance role
+
+  E. Register the application with X-Ray
+
+  **F. Configure and use an IAM role for tasks**
+
+  ***Explanation:*** [Running the X-Ray daemon on Amazon ECS](https://docs.aws.amazon.com/xray/latest/devguide/xray-daemon-ecs.html). In Amazon ECS, create a Docker image that runs the X-Ray daemon, upload it to a Docker image repository, and then deploy it to your Amazon ECS cluster. You can use port mappings and network mode settings in your task definition file to allow your application to communicate with the daemon container.
+
+  [AWS X-Ray use cases and requirements](https://docs.aws.amazon.com/xray/latest/devguide/xray-usage.html). To instrument your application code, you use the **X-Ray SDK**. The SDK records data about incoming and outgoing requests and sends it to the X-Ray daemon, which relays the data in batches to X-Ray.
+
+* [AWS::Lambda::Function Code](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lambda-function-code.html). Changes to a deployment package in Amazon S3 are not detected automatically during stack updates. To update the function code, change the object key or version in the template.
+
+* [Amazon SQS Quotas](https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-quotas.html). Message size.
+
+  The minimum message size is 1 byte (1 character). The maximum is 262,144 bytes (256 KB).
+
+  To send messages larger than 256 KB, you can use the [Amazon SQS Extended Client Library for Java](https://github.com/awslabs/amazon-sqs-java-extended-client-lib). This library allows you to send an Amazon SQS message that contains a reference to a message payload in Amazon S3. The maximum payload size is 2 GB.
+
+* [How do I give internet access to my Lambda function in a VPC?](https://aws.amazon.com/premiumsupport/knowledge-center/internet-access-lambda-function/)
+
+* Kinesis Data Streams, Lambda
+
+  A Developer is creating an AWS Lambda function to process a stream of data from an Amazon Kinesis Data Stream. When the Lambda function parses the data and encounters a missing field, it exits the function with an error. The function is generating duplicate records from the Kinesis stream. When the Developer looks at the stream output without the Lambda function, there are no duplicate records. What is the reason for the duplicates?
+
+  A. The Lambda function did not advance the Kinesis stream pointer to the next record after the error
+
+  B. The Lambda event source used asynchronous invocation, resulting in duplicate records
+
+  **C. The Lambda function did not handle the error, and the Lambda service attempted to reprocess the data**
+
+  D. The Lambda function is not keeping up with the amount of data coming from the stream
+
+  ***Explanation:*** [Handling Duplicate Records](https://docs.aws.amazon.com/streams/latest/dev/kinesis-record-processor-duplicates.html). There are two primary reasons why records may be delivered more than one time to your Amazon Kinesis Data Streams application: producer retries and consumer retries.
+
+  Consider a producer that experiences a network-related timeout after it makes a call to `PutRecord`, but before it can receive an acknowledgement from Amazon Kinesis Data Streams.
+
+  Consumer (data processing application) retries happen when record processors restart.
+
+  [Error Handling](https://docs.aws.amazon.com/lambda/latest/dg/with-kinesis.html#services-kinesis-errors). If the function receives the records but returns an error, Lambda retries until the records in the batch expire, exceed the maximum age, or reach the configured retry limit.
+
+* [Using Instance Profiles](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_use_switch-role-ec2_instance-profiles.html). An instance profile is a container for an IAM role that you can use to pass role information to an EC2 instance when the instance starts.
+
+* Cognito, user pools and identity pools
+
+  A company is creating an application that will require users to access AWS services and allow them to reset their own passwords. Which of the following would allow the company to manage users and authorization while allowing users to reset their own passwords?
+
+  A. Amazon Cognito identify pools and AWS STS
+
+  B. Amazon Cognito identity pools and AWS IAM
+
+  C. Amazon Cognito user pools and AWS KMS
+
+  **D. Amazon Cognito user pools and identity pools**
+
+  ***Explanation:*** [Cognito User Pool vs Identity Pool](https://serverless-stack.com/chapters/cognito-user-pool-vs-identity-pool.html). [What's the difference between Amazon Cognito user pools and identity pools?](https://aws.amazon.com/premiumsupport/knowledge-center/cognito-user-pools-identity-pools/)
+
+* CodeDeploy, deployment groups
+
+  A company has three different environments: Development, QA, and Production. The company wants to deploy its code first in the Development environment, then QA, and then Production. Which AWS service can be used to meet this requirement?
+
+  A. Use AWS CodeCommit to create multiple repositories to deploy the application
+
+  B. Use AWS CodeBuild to create, configure, and deploy multiple build application projects
+
+  C. Use AWS Data Pipeline to create multiple data pipeline provisions to deploy the application
+
+  **D. Use AWS CodeDeploy to create multiple deployment groups**
+
+  ***Explanation:*** [Working with Deployment Groups in CodeDeploy](https://docs.aws.amazon.com/codedeploy/latest/userguide/deployment-groups.html#deployment-group-server). You can associate more than one deployment group with an application in CodeDeploy. This makes it possible to deploy an application revision to different sets of instances at different times. For example, you might use one deployment group to deploy an application revision to a set of instances tagged `Test` where you ensure the quality of the code. Next, you deploy the same application revision to a deployment group with instances tagged `Staging` for additional verification. Finally, when you are ready to release the latest application to customers, you deploy to a deployment group that includes instances tagged `Production`.
+
+  [What is AWS Data Pipeline?](https://docs.aws.amazon.com/datapipeline/latest/DeveloperGuide/what-is-datapipeline.html). AWS Data Pipeline is a web service that you can use to automate the movement and transformation of data.
+
+* CloudWatch
+
+  A Development team has pushed out 10 applications running on several Amazon EC2 instances. The Operations team is asking for a graphical representation of one key performance metric for each application. These metrics should be available on one screen for easy monitoring. Which steps should the Developer take to accomplish this using Amazon CloudWatch?
+
+  **A. Create a custom namespace with a unique metric name for each application**
+
+  B. Create a custom dimension with a unique metric name for each application
+
+  C. Create a custom event with a unique metric name for each application
+
+  D. Create a custom alarm with a unique metric name for each application
+
+  ***Explanation:*** [Amazon CloudWatch Concepts](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/cloudwatch_concepts.html)
+
+  A *namespace* is a container for CloudWatch metrics.
+
+  *Metrics* are the fundamental concept in CloudWatch. A metric represents a time-ordered set of data points that are published to CloudWatch. Think of a metric as a variable to monitor, and the data points as representing the values of that variable over time.
+
+  A *dimension* is a name/value pair that is part of the identity of a metric. You can assign up to 10 dimensions to a metric.
+
+  You can use an *alarm* to automatically initiate actions on your behalf. An alarm watches a single metric over a specified time period, and performs one or more specified actions, based on the value of the metric relative to a threshold over time.
+
+* [Set Up API Keys Using the API Gateway Console](https://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-setup-api-key-with-console.html). To set up API keys, do the following: Configure API methods to require an API key. Create or import an API key for the API in a region.
+
+* [How are compute resources assigned to an AWS Lambda function?](https://aws.amazon.com/lambda/faqs/). In the AWS Lambda resource model, you choose the amount of memory you want for your function, and are allocated proportional CPU power and other resources. For example, choosing 256MB of memory allocates approximately twice as much CPU power to your Lambda function as requesting 128MB of memory and half as much CPU power as choosing 512MB of memory.
+
+* SAM
+
+  To include objects defined by the AWS Serverless Application Model (SAM) in an AWS CloudFormation template, in addition to Resources, what section MUST be included in the document root?
+
+  A. Conditions
+
+  B. Globals
+
+  **C. Transform**
+
+  D. Properties
+
+  [AWS SAM Template Anatomy](https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/sam-specification-template-anatomy.html). Templates include several major sections. `Transform` and `Resources` are the only required sections.
+
 * 
+
