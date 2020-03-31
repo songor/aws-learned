@@ -1,6 +1,6 @@
 # AWS Certification Exam Mistake Collection
 
-* S3, version
+* S3, version ID
 
   A user has not enabled versioning on an S3 bucket. What will be the version ID of the object inside that bucket?
 
@@ -28,7 +28,7 @@
 
   ***Explanation:*** [DeleteQueue](https://docs.aws.amazon.com/AWSSimpleQueueService/latest/APIReference/API_DeleteQueue.html). Be careful with the `DeleteQueue` action: When you delete a queue, any messages in the queue are no longer available.
 
-* EC2, secondary IP address
+* EC2, recognize the secondary private IP address
 
   An organization has launched two applications: one for blogging and one for ECM on the same AWS Linux EC2 instance running in the AWS VPC. The organization has attached two private IPs (primary and secondary) to the above mentioned instance. The organization wants the instance OS to recognize the secondary IP address. How can the organization configure this?
 
@@ -42,7 +42,7 @@
 
   ***Explanation:*** [Multiple IP Addresses](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/MultipleIP.html). After you assign a secondary private IPv4 address to your instance, you need to configure the operating system on your instance to recognize the secondary private IP address. If you are using Amazon Linux, the ec2-net-utils package can take care of this step for you. It configures additional network interfaces that you attach while the instance is running, refreshes secondary IPv4 addresses during DHCP lease renewal, and updates the related routing rules.
 
-* SQS, messages kept default
+* SQS, quotas
 
   How long are the messages kept on an SQS queue by default?
 
@@ -53,6 +53,8 @@
   C. 1 day
 
   **D. 4 days**
+
+  ***Explanation:*** [Amazon SQS Quotas](https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-quotas.html). Message retention - By default, a message is retained for 4 days. The minimum is 60 seconds (1 minute). The maximum is 1,209,600 seconds (14 days).
 
 * SWF, decider
 
@@ -68,7 +70,7 @@
 
   ***Explanation:*** [Introduction to Amazon SWF](https://docs.aws.amazon.com/amazonswf/latest/developerguide/swf-dg-intro-to-swf.html). The coordination logic in a workflow is contained in a software program called a *decider*.
 
-* IAM, region
+* IAM, control access to AWS regions
 
   An account owner has created an IAM user with the name examkiller. The account owner wants to give EC2 access of only the US West region to that IAM user. How can the owner configure this?
 
@@ -82,7 +84,7 @@
 
   ***Explanation:*** [Easier way to control access to AWS regions using IAM policies](https://aws.amazon.com/cn/blogs/security/easier-way-to-control-access-to-aws-regions-using-iam-policies/)
 
-* SQS, messages kept maximum
+* SQS, quotas
 
   What is the maximum time messages can be stored in SQS?
 
@@ -94,17 +96,21 @@
 
   D. 7 days
 
-* SQS, data size
+* SQS, quotas
 
   When using Amazon SQS how much data can you store in a message?
 
-  **A. 8 KB**
+  A. 8 KB
 
   B. 2 KB
 
   C. 16 KB
 
   D. 4 KB
+
+  ***Explanation:*** [Amazon SQS Quotas](https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-quotas.html). Message size - The minimum message size is 1 byte (1 character). The maximum is 262,144 bytes (256 KB).
+
+  To send messages larger than 256 KB, you can use the [Amazon SQS Extended Client Library for Java](https://github.com/awslabs/amazon-sqs-java-extended-client-lib). This library allows you to send an Amazon SQS message that contains a reference to a message payload in Amazon S3. The maximum payload size is 2 GB.
 
 * EC2, access different region
 
@@ -144,7 +150,7 @@
 
   D. Consist of a folder with all files
 
-  ***Explanation:*** [Create an application source bundle](https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/applications-sourcebundle.html). Consist of a single `ZIP` file or `WAR` file (you can include multiple `WAR` files inside your `ZIP` file)
+  ***Explanation:*** [Create an application source bundle](https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/applications-sourcebundle.html). Consist of a single `ZIP` file or `WAR` file (you can include multiple `WAR` files inside your `ZIP` file).
 
 * S3, static website
 
@@ -200,7 +206,7 @@
 
   **D. Perform a Code Check for any memory leaks**
 
-* SQS, delete queue without notification
+* SQS, delete your queue without notification
 
   Regarding Amazon SQS, what happens if there is no activity against a queue for more than 30 consecutive days?
 
@@ -272,7 +278,7 @@
 
   ***Explanation:*** [Introduction to Amazon SWF](https://docs.aws.amazon.com/amazonswf/latest/developerguide/swf-dg-intro-to-swf.html). An *activity worker* is a program that receives activity tasks, performs them, and provides results back.
 
-* Auto Scaling, new instance
+* Auto Scaling, launch new instances
 
   When Auto Scaling is launching a new instance based on condition, which of the below mentioned policies will it follow?
 
@@ -448,7 +454,7 @@
 
   D. Define the policy for the bucket
 
-  ***Explanation:*** [Identity and Access Management in Amazon S3](https://docs.aws.amazon.com/AmazonS3/latest/dev/s3-access-control.html). [Guidelines for Using the Available Access Policy Options](https://docs.aws.amazon.com/AmazonS3/latest/dev/access-policy-alternatives-guidelines.html)
+  ***Explanation:*** [Identity and Access Management in Amazon S3](https://docs.aws.amazon.com/AmazonS3/latest/dev/s3-access-control.html). [Guidelines for Using the Available Access Policy Options](https://docs.aws.amazon.com/AmazonS3/latest/dev/access-policy-alternatives-guidelines.html).
 
 * ELB, listeners
 
@@ -498,7 +504,7 @@
 
 * [DynamoDB Secondary Indexes](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/HowItWorks.CoreComponents.html#HowItWorks.CoreComponents.SecondaryIndexes)
 
-* EC2, launch
+* EC2, key pair
 
   When a user is launching an instance with EC2, which of the below mentioned options is not available during the instance launch console for a key pair?
 
@@ -540,9 +546,9 @@
 
   D. View your table's top monitoring metrics on real-time graphs from CloudWatch
 
-  ***Explanation:*** [Import and Export DynamoDB Data Using AWS Data Pipeline](https://docs.aws.amazon.com/datapipeline/latest/DeveloperGuide/dp-importexport-ddb.html). [Using the Console](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/ConsoleDynamoDB.html)
+  ***Explanation:*** [Import and Export DynamoDB Data Using AWS Data Pipeline](https://docs.aws.amazon.com/datapipeline/latest/DeveloperGuide/dp-importexport-ddb.html). [Using the Console](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/ConsoleDynamoDB.html).
 
-* ELB, cookie
+* ELB, session cookie
 
   A user has hosted a website on AWS and uses ELB to load balance the multiple instances. The user application does not have any cookie management. How can the user bind the session of the requestor with a particular instance?
 
@@ -588,7 +594,7 @@
 
   Regarding Amazon SWF, at times you might want to record information in the workflow history of a workflow execution that is specific to your use case. _________ enable you to record information in the workflow execution history that you can use for any custom or scenario-specific purpose.
 
-  A. Markers
+  **A. Markers**
 
   B. Tags
 
@@ -630,7 +636,7 @@
 
 * CloudFormation, maximum number of stacks
 
-  When working with AWS CloudFormation Templates what is the maximum number of stacks that you can create?
+  When working with AWS CloudFormation Templates, what is the maximum number of stacks that you can create?
 
   A. 500
 
@@ -1082,7 +1088,7 @@
 
   [Creating IAM Identity Providers](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_providers_create.html). When you want to configure federation with an external identity provider (IdP) service, you create an IAM *identity provider* to inform AWS about the IdP and its configuration. This establishes "trust" between your AWS account and the IdP.
 
-  [About Web Identity Federation](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_providers_oidc.html).They can receive an authentication token, and then exchange that token for temporary security credentials in AWS that map to an IAM role with permissions to use the resources in your AWS account.
+  [About Web Identity Federation](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_providers_oidc.html). They can receive an authentication token, and then exchange that token for temporary security credentials in AWS that map to an IAM role with permissions to use the resources in your AWS account.
 
   If you don't use Amazon Cognito, then you must write code that interacts with a web IdP, such as Facebook, and then calls the `AssumeRoleWithWebIdentity` API to trade the authentication token you get from those IdPs for AWS temporary security credentials.
 
