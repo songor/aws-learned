@@ -1928,5 +1928,125 @@
 
   [AWS SAM Template Anatomy](https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/sam-specification-template-anatomy.html). Templates include several major sections. `Transform` and `Resources` are the only required sections.
 
-* 
+* [Searching and Filtering Log Data](https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/MonitoringLogData.html). Filters do not retroactively filter data. Filters only publish the metric data points for events that happen after the filter was created. Filtered results return the first 50 lines, which will not be displayed if the timestamp on the filtered results is earlier than the metric creation time.
+
+* [Amazon S3 + Amazon CloudFront: A Match Made in the Cloud](https://aws.amazon.com/blogs/networking-and-content-delivery/amazon-s3-amazon-cloudfront-a-match-made-in-the-cloud/). Storing and Accelerating your Content while Increasing Security and Reducing Cost.
+
+* API Gateway, CloudWatch
+
+  A Developer is building a web application that uses Amazon API Gateway to expose an AWS Lambda function to process requests from clients. During testing, the Developer notices that the API Gateway times out even though the Lambda function finishes under the set time limit. Which of the following API Gateway metrics in Amazon CloudWatch can help the Developer troubleshoot the issue? (Choose two)
+
+  A. CacheHitCount
+
+  **B. IntegrationLatency**
+
+  C. CacheMissCount
+
+  **D. Latency**
+
+  E. Count
+
+  ***Explanation:*** [Monitoring REST API Execution with Amazon CloudWatch Metrics](https://docs.aws.amazon.com/apigateway/latest/developerguide/monitoring-cloudwatch.html)
+
+  Monitor the **IntegrationLatency** metrics to measure the responsiveness of the backend.
+
+  Monitor the **Latency** metrics to measure the overall responsiveness of your API calls.
+
+  Monitor the **CacheHitCount** and **CacheMissCount** metrics to optimize cache capacities to achieve a desired performance.
+
+* CodeDeploy, specification file
+
+  A Developer is trying to deploy a serverless application using AWS CodeDeploy. The application was updated and needs to be redeployed. What file does the Developer need to update to push that change through CodeDeploy?
+
+  A. dockerrun.aws.json
+
+  B. buildspec.yml
+
+  **C. appspec.yml**
+
+  D. ebextensions.config
+
+  ***Explanation:*** [Multicontainer Docker configuration](https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/create_deploy_docker_v2config.html). A `Dockerrun.aws.json` file is an Elastic Beanstalk–specific JSON file that describes how to deploy a set of Docker containers as an Elastic Beanstalk application. You can use a `Dockerrun.aws.json` file for a multicontainer Docker environment.
+
+  [Build specification reference for CodeBuild](https://docs.aws.amazon.com/codebuild/latest/userguide/build-spec-ref.html). A *buildspec* is a collection of build commands and related settings, in YAML format, that CodeBuild uses to run a build. You can include a buildspec as part of the source code or you can define a buildspec when you create a build project.
+
+  [Advanced environment customization with configuration files (`.ebextensions`)](https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/ebextensions.html). You can add AWS Elastic Beanstalk configuration files (`.ebextensions`) to your web application's source code to configure your environment and customize the AWS resources that it contains. Configuration files are YAML- or JSON-formatted documents with a `.config` file extension that you place in a folder named `.ebextensions` and deploy in your application source bundle.
+
+  [CodeDeploy AppSpec File Reference](https://docs.aws.amazon.com/codedeploy/latest/userguide/reference-appspec-file.html). The application specification file (AppSpec file) is a [YAML](http://www.yaml.org/)-formatted or JSON-formatted file used by CodeDeploy to manage a deployment.
+
+* [Protecting Data Using Encryption](https://docs.aws.amazon.com/AmazonS3/latest/dev/UsingEncryption.html). Data protection refers to protecting data while in-transit (as it travels to and from Amazon S3) and at rest (while it is stored on disks in Amazon S3 data centers). You can protect data in transit using Secure Sockets Layer (SSL) or client-side encryption.
+
+* [High-Resolution Metrics](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/publishingMetrics.html#high-resolution-metrics). Each metric is one of the following: Standard resolution, with data having a one-minute granularity. High resolution, with data at a granularity of one second.
+
+  When you publish a high-resolution metric, CloudWatch stores it with a resolution of 1 second, and you can read and retrieve it with a period of 1 second, 5 seconds, 10 seconds, 30 seconds, or any multiple of 60 seconds.
+
+* [Permissions for Actions on Branches](https://docs.aws.amazon.com/codecommit/latest/userguide/auth-and-access-control-permissions-reference.html#aa-branches). codecommit:CreateBranch - Required to create a branch in a CodeCommit repository. codecommit:DeleteBranch - Required to delete a branch from a CodeCommit repository.
+
+* [AWS Lambda Event Source Mapping](https://docs.aws.amazon.com/lambda/latest/dg/invocation-eventsourcemapping.html). An event source mapping is an AWS Lambda resource that reads from an event source and invokes a Lambda function. You can use event source mappings to process items from a stream or queue in services that don't invoke Lambda functions directly.
+
+  [Tutorial: Process New Items with DynamoDB Streams and Lambda](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Streams.Lambda.Tutorial.html)
+
+* Lambda, limits
+
+  A Developer created anew AWS account and must create a scalable AWS Lambda function that meets the following requirements for concurrent execution: Average execution time of 100 seconds. 50 requests per second. Which step must be taken prior to deployment to prevent errors?
+
+  A. Implement dead-letter queues to capture invocation errors
+
+  B. Add an event source from Amazon API Gateway to the Lambda function
+
+  C. Implement error handling within the application code
+
+  **D. Contact AWS Support to increase the concurrent execution limits**
+
+  ***Explanation:*** [AWS Lambda Limits](https://docs.aws.amazon.com/lambda/latest/dg/gettingstarted-limits.html). Concurrent executions -  1,000. But we need 50 * 100.
+
+* X-Ray, annotations
+
+  A Development team wants to instrument their code to provide more detailed information to AWS X-Ray than simple outgoing and incoming requests. This will generate large amounts of data, so the Development team wants to implement indexing so they can filter the data. What should the Development team do to achieve this?
+
+  **A. Add annotations to the segment document and the code**
+
+  B. Add metadata to the segment document and the code
+
+  C. Configure the necessary X-Ray environment variables
+
+  D. Install required plugins for the appropriate AWS SDK
+
+  ***Explanation:*** [Annotations and metadata](https://docs.aws.amazon.com/xray/latest/devguide/xray-concepts.html#xray-concepts-annotations). When you instrument your application, the X-Ray SDK records information about incoming and outgoing requests, the AWS resources used, and the application itself. You can add other information to the segment document as annotations and metadata.
+
+  **Annotations** are simple key-value pairs that are indexed for use with [filter expressions](https://docs.aws.amazon.com/xray/latest/devguide/xray-console-filters.html).
+
+  **Metadata** are key-value pairs with values of any type, including objects and lists, but that are not indexed.
+
+* [Migrate a Git Repository to AWS CodeCommit](https://docs.aws.amazon.com/codecommit/latest/userguide/how-to-migrate-repository-existing.html). CodeCommit supports both HTTPS and SSH authentication. To complete setup, you must configure Git credentials for CodeCommit (HTTPS, recommended for most users), an SSH key pair to use when accessing CodeCommit (SSH), **git-remote-codecommit** (recommended for users who use federated access), or the credential helper included in the AWS CLI (HTTPS).
+
+* [Load balancer for your Elastic Beanstalk environment](https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/using-features.managing.elb.html). You can choose the type of load balancer that your environment uses only during environment creation. Later, you can change settings to manage the behavior of your running environment's load balancer, but you can't change its type.
+
+* API Gateway, Lambda Authorizers
+
+  A company wants to implement authentication for its new REST service using Amazon API Gateway. To authenticate the calls, each request must include HTTP headers with a client ID and user ID. These credentials must be compared to authentication data in an Amazon DynamoDB table. What MUST the company do to implement this authentication in API Gateway?
+
+  **A. Implement an AWS Lambda authorizer that references the DynamoDB authentication table**
+
+  B. Create a model that requires the credentials, then grant API Gateway access to the authentication table
+
+  C. Modify the integration requests to require the credentials, then grant API Gateway access to the authentication table
+
+  D. Implement an Amazon Cognito authorizer that references the DynamoDB authentication table
+
+  ***Explanation:*** [Use API Gateway Lambda Authorizers](https://docs.aws.amazon.com/apigateway/latest/developerguide/apigateway-use-lambda-authorizer.html). A Lambda authorizer is useful if you want to implement a custom authorization scheme that uses a bearer token authentication strategy such as OAuth or SAML, or that uses request parameters to determine the caller's identity.
+
+* IAM, MFA
+
+  A Developer is trying to make API calls using SDK. The IAM user credentials used by the application require multi-factor authentication for all API calls. Which method the Developer use to access the multi-factor authentication protected API?
+
+  A. GetFederationToken
+
+  B. GetCallerIdentity
+
+  **C. GetSessionToken**
+
+  D. DecodeAutherizationMessage
+
+  ***Explanation:*** [Configuring MFA-Protected API Access](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_mfa_configure-api-require.html)
 
