@@ -928,13 +928,15 @@
 
   A. DescnbeInstances
 
-  **B. DescribeAMls**
+  B. DescribeAMls
 
-  C. DescribeImages
+  **C. DescribeImages**
 
   D. GetAMls
 
   E. You cannot retrieve a list of AMIs as there are over 10,000 AMIs
+
+  ***Explanation:*** [DescribeImages](https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_DescribeImages.html). Describes the specified images (AMIs, AKIs, and ARIs) available to you or all of the images available to you.
 
 * EC2, monitoring
 
@@ -2055,4 +2057,48 @@
   D. DecodeAutherizationMessage
 
   ***Explanation:*** [Configuring MFA-Protected API Access](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_mfa_configure-api-require.html)
+
+* SQS, delivery formats/transports
+
+  A user is trying to understand AWS SNS. To which of the below mentioned end points is SNS unable to send a notification?
+
+  **A. AWS SES**
+
+  B. Email JSON
+
+  C. AWS SQS
+
+  D. HTTP
+
+  ***Explanation:*** [What are the different delivery formats/transports for receiving notifications?](https://aws.amazon.com/sns/faqs/?nc1=h_ls)
+
+* EC2
+
+  Which of the following device names is reserved for the root device for Linux instances of Amazon EC2?
+
+  **A. /dev/sda1**
+
+  B. /dev/sd[b-e]
+
+  C. xvd[a-e]
+
+  D. /dev/sd\[f-p\]\[1-6\]
+
+  ***Explanation:*** [Device Naming](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/device_naming.html)
+
+* DynamoDB, SSD
+
+  Which one of the following statements is NOT an advantage of DynamoDB being built on Solid State Drives:
+
+  A. serve high-scale request workloads
+
+  B. low request pricing
+
+  **C. high I/O performance of Web App on EC2 instance**
+
+  D. low-latency response times
+
+  
+
+  
 
