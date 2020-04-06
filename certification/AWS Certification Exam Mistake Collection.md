@@ -1610,6 +1610,8 @@
 
   ***Explanation:*** [Data Transfer](https://aws.amazon.com/rds/mysql/pricing/). Data transferred between Amazon RDS and Amazon EC2 Instances in the same Availability Zone is free.
 
+  Amazon RDS DB Instances inside VPC: For data transferred between an Amazon EC2 instance and Amazon RDS DB Instance in different Availability Zones of the same Region, Amazon EC2 Regional Data Transfer charges apply on both sides of transfer.
+
 * RDS, access
 
   Does Amazon RDS allow direct host access via Telnet, Secure Shell (SSH), or Windows Remote Desktop Connection?
@@ -2098,7 +2100,44 @@
 
   D. low-latency response times
 
-  
+* IAM, federated access
 
-  
+  You are managing the AWS account of a big organization. The organization has more than 1000+ employees and they want to provide access to the various services to most of the employees. Which of the below mentioned options is the best possible solution in this case?
 
+  A. The user should create a separate IAM user for each employee and provide access to them as per the policy
+
+  B. The user should create an IAM role and attach STS with the role. The user should attach that role to the EC2 instance and setup AWS authentication on that server
+
+  C. The user should create IAM groups as per the organization's departments and add each user to the group for better access control
+
+  **D. Attach an IAM role with the organization's authentication service to authorize each user for various AWS services**
+
+* RDS, snapshot event
+
+  A user is planning to setup notifications on the RDS DB for a snapshot. Which of the below mentioned event categories is not supported by RDS for this snapshot source type?
+
+  **A. Backup**
+
+  B. Creation
+
+  C. Deletion
+
+  D. Restoration
+
+  ***Explanation:*** [Using Amazon RDS Event Notification](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_Events.html#USER_Events.Messages). Backup - DB instance.
+
+  You can create an Amazon RDS event notification subscription so you can be notified when an event occurs for a given DB instance, DB snapshot, DB security group, or DB parameter group.
+
+* RDS, read replica
+
+  It is advised that you watch the Amazon CloudWatch "_______" metric (available via the AWS Management Console or Amazon Cloud Watch APIs) carefully and recreate the Read Replica should it fall behind due to replication errors
+
+  A. Write Lag
+
+  B. Read Replica
+
+  **C. Replica Lag**
+
+  D. Single Replica
+
+  ***Explanation:*** [How do I see the status of my active read replica(s)?](https://aws.amazon.com/rds/faqs/#105). Amazon RDS allows you to gain visibility into how far a read replica has fallen behind its source DB instance. The number of seconds that the read replica is behind the master is published as an Amazon CloudWatch metric ("Replica Lag") available via the AWS Management Console or Amazon CloudWatch APIs.
