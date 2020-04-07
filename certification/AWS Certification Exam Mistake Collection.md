@@ -2141,3 +2141,49 @@
   D. Single Replica
 
   ***Explanation:*** [How do I see the status of my active read replica(s)?](https://aws.amazon.com/rds/faqs/#105). Amazon RDS allows you to gain visibility into how far a read replica has fallen behind its source DB instance. The number of seconds that the read replica is behind the master is published as an Amazon CloudWatch metric ("Replica Lag") available via the AWS Management Console or Amazon CloudWatch APIs.
+
+* Lambda, layer
+
+  How should custom libraries be utilized in AWS Lambda?
+
+  A. Host the library on Amazon S3 and reference to it from the Lambda function
+
+  **B. Install the library locally and upload a ZIP file of the Lambda function**
+
+  C. Import the necessary Lambda blueprint when creating the function
+
+  D. Modify the function runtime to include the necessary library
+
+* ELB, SSL
+
+  A company needs to secure its existing website running behind an Elastic Load Balancer. The website's Amazon EC2 instances are CPU-constrained. What should be done to secure the website while not increasing the CPU load on the EC2 web servers? (Select TWO)
+
+  A. Configure an Elastic Load Balancer with SSL pass-through
+
+  **B. Configure SSL certificates on an Elastic Load Balancer**
+
+  C. Configure an Elastic Load Balancer with a Loadable Storage System
+
+  D. Install SSL certificates on the EC2 instances
+
+  **E. Configure an Elastic Load Balancer with SSL termination**
+
+  ***Explanation:*** [Network Load Balancer Now Supports TLS Termination](https://aws.amazon.com/about-aws/whats-new/2019/01/network-load-balancer-now-supports-tls-termination/). With this new feature, you can offload the decryption/encryption of TLS traffic from your application servers to the Network Load Balancer, which helps you optimize the performance of your backend application servers while keeping your workloads secure. Additionally, Network Load Balancers preserve the source IP of the clients to the back-end applications, while terminating TLS on the load balancer.
+
+  [HTTPS Listeners for Your Classic Load Balancer](https://docs.aws.amazon.com/elasticloadbalancing/latest/classic/elb-https-load-balancers.html). You must deploy an SSL certificate on your load balancer. The load balancer uses this certificate to terminate the connection and then decrypt requests from clients before sending them to the instances.
+
+* [Managing How Long Content Stays in an Edge Cache (Expiration)](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/Expiration.html#expiration-individual-objects)
+
+* Elastic Beanstalk
+
+  In a multi-container Docker environment in AWS Elastic Beanstalk, what is required to configure container instances in the environment?
+
+  **A. An Amazon ECS task definition**
+
+  B. An Amazon ECS cluster
+
+  C. A Docker in an application package
+
+  D. A CLI for Elastic Beanstalk
+
+  ***Explanation:*** [Amazon ECS resources created by Elastic Beanstalk](https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/create_deploy_docker_ecs.html#create_deploy_docker_ecs_resources). **Amazon ECS Task Definition** – Elastic Beanstalk uses the `Dockerrun.aws.json` file in your project to generate the Amazon ECS task definition that is used to configure container instances in the environment.
