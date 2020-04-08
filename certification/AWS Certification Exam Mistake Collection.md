@@ -384,6 +384,8 @@
 
   ***Explanation:*** [Health colors and statuses](https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/health-enhanced-status.html). When an instance fails health checks at least three times in any one-minute period, Elastic Beanstalk may downgrade the health of the environment.
 
+  Unknown (grey) - This status is displayed when Elastic Beanstalk and the health agent are reporting an insufficient amount of data on an instance.
+
 * EBS, snapshot
 
   A user is creating a snapshot of an EBS volume. Which of the below statements is incorrect in relation to the creation of an EBS snapshot?
@@ -502,7 +504,15 @@
 
 * [DB Instance Billing for Amazon RDS](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/User_DBInstanceBilling.html)
 
+  DB instance hours (per hour), Storage (per GiB per month), I/O requests (per 1 million requests per month), Provisioned IOPS (per IOPS per month), Backup storage (per GiB per month), Data transfer (per GB).
+
 * [DynamoDB Secondary Indexes](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/HowItWorks.CoreComponents.html#HowItWorks.CoreComponents.SecondaryIndexes)
+
+  DynamoDB supports two kinds of indexes:
+
+  Global secondary index – An index with a partition key and sort key that can be different from those on the table.
+
+  Local secondary index – An index that has the same partition key as the table, but a different sort key.
 
 * EC2, key pair
 
@@ -1220,7 +1230,7 @@
 
   D. AWS::NotificationARNs
 
-  ***Explanation:*** [Pseudo Parameters Reference](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/pseudo-parameter-reference.html)
+  ***Explanation:*** [Pseudo Parameters Reference](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/pseudo-parameter-reference.html). AWS::StackId - Returns the ID of the stack as specified with the `aws cloudformation create-stack` command. AWS::StackName - Returns the name of the stack as specified with the `aws cloudformation create-stack` command.
 
 * S3, replication
 
@@ -1289,6 +1299,8 @@
   Mix up a few different MessageGroupIds. This makes sense, for example, if you are tracking data from several different customers. The idea is if you use the customer ID as the MessageGroupId, the records for each customer will be delivered in order; there’s no particular ordering between records from different customers.
 
 * [Using the Default Credential Provider Chain](https://docs.aws.amazon.com/sdk-for-java/v1/developer-guide/credentials.html)
+
+  The default credential provider chain looks for credentials in this order: **Environment variables**, **Java system properties**, **The default credential profiles file**, **Amazon ECS container credentials**, **Instance profile credentials**.
 
 * [Advanced environment customization with configuration files (`.ebextensions`)](https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/ebextensions.html). You can add AWS Elastic Beanstalk configuration files (`.ebextensions`) to your web application's source code to configure your environment and customize the AWS resources that it contains. Configuration files are YAML- or JSON-formatted documents with a `.config` file extension that you place in a folder named `.ebextensions` and deploy in your application source bundle.
 
@@ -1722,7 +1734,7 @@
 
   If you enable DynamoDB Streams on a table, you can associate the stream Amazon Resource Name (ARN) with an AWS Lambda function that you write. Immediately after an item in the table is modified, a new record appears in the table's stream. AWS Lambda polls the stream and invokes your Lambda function synchronously when it detects new stream records.
 
-*  Cognito
+* Cognito
 
   A social media company is using Amazon Cognito in order to synchronize profiles across different mobile devices, to enable end users to have a seamless experience. Which of the following configurations can be used to silently notify users whenever an update is available on all other devices?
 
@@ -1734,7 +1746,7 @@
 
   **D. Use the push synchronization feature with the appropriate IAM role**
 
-  ***Explanation:*** [Push Sync](https://docs.aws.amazon.com/cognito/latest/developerguide/push-sync.html). Amazon Cognito automatically tracks the association between identity and devices. Using the push synchronization, or push sync feature, you can ensure that every instance of a given identity is notified when identity data changes. Push sync ensures that, whenever the sync store data changes for a particular identity, all devices associated with that identity receive a silent push notification informing them of the change.
+  **Explanation:** [Push Sync](https://docs.aws.amazon.com/cognito/latest/developerguide/push-sync.html). Amazon Cognito automatically tracks the association between identity and devices. Using the push synchronization, or push sync feature, you can ensure that every instance of a given identity is notified when identity data changes. Push sync ensures that, whenever the sync store data changes for a particular identity, all devices associated with that identity receive a silent push notification informing them of the change.
 
 * [Caching Strategies](https://docs.aws.amazon.com/AmazonElastiCache/latest/mem-ug/Strategies.html). cache-aside = lazy loading
 
